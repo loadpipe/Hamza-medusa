@@ -181,19 +181,19 @@ export default function ProductActions({
         // console.log('toggle wishlist-dropdown item', product);
         wishlist.products.find((a) => a.id == product.id)
             ? removeWishlistItemMutation.mutate({
-                  id: product.id!,
-                  description: product.description!,
-                  handle: product.handle!,
-                  thumbnail: product.thumbnail!,
-                  title: product.title!,
-              })
+                id: product.id!,
+                description: product.description!,
+                handle: product.handle!,
+                thumbnail: product.thumbnail!,
+                title: product.title!,
+            })
             : addWishlistItemMutation.mutate({
-                  id: product.id!,
-                  description: product.description!,
-                  handle: product.handle!,
-                  thumbnail: product.thumbnail!,
-                  title: product.title!,
-              });
+                id: product.id!,
+                description: product.description!,
+                handle: product.handle!,
+                thumbnail: product.thumbnail!,
+                title: product.title!,
+            });
     };
 
     const whitelistedProductHandler = async () => {
@@ -206,7 +206,7 @@ export default function ProductActions({
         if (data.status == true) {
             const whitelistedProduct =
                 whitelist_config.is_whitelisted &&
-                whitelist_config.whitelisted_stores.includes(data.data)
+                    whitelist_config.whitelisted_stores.includes(data.data)
                     ? true
                     : false;
 
@@ -275,10 +275,10 @@ export default function ProductActions({
                     {!variant
                         ? 'Select variant'
                         : !inStock && isWhitelisted
-                          ? 'Add to cart'
-                          : inStock
                             ? 'Add to Cart'
-                            : 'Out of Stock'}
+                            : inStock
+                                ? 'Add to Cart'
+                                : 'Out of Stock'}
                 </Button>
                 {!inStock && isWhitelisted && (
                     <span className="text-xs">

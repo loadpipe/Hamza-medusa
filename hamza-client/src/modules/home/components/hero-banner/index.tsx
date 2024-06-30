@@ -50,7 +50,7 @@ const HeroBanner = () => {
                     </Text>
                 </Link>
             </Flex>
-            <SwitchNetwork />
+            <SwitchNetwork enabled={false} />
             <Flex
                 px={6}
                 pt={8}

@@ -53,18 +53,24 @@ const ProductCard: React.FC<ProductCardProps & { productId?: string }> = ({
     inventory,
     storeId,
 }) => {
+    //Product states
     const [loadingBuy, setLoadingBuy] = useState(false);
     const [loadingAddToCart, setLoadingAddToCard] = useState(false);
+
+    //Auth states
     const { authData, whitelist_config, setWhitelistConfig } =
         useCustomerAuthStore();
     const { addWishlistItemMutation, removeWishlistItemMutation } =
         useWishlistMutations();
 
+    //Wishlist store
     const { wishlist } = useWishlistStore();
-
     const [isWhitelisted, setIsWhitelisted] = useState(false);
+
+    //Routing
     const router = useRouter();
 
+    //Toggle wish list
     const toggleWishlist = async () => {
         // console.log('toggle wishlist-dropdown item', product);
         wishlist.products.find((a) => a.id == productId)
@@ -84,6 +90,7 @@ const ProductCard: React.FC<ProductCardProps & { productId?: string }> = ({
               });
     };
 
+    // Add to cart
     const handleAddToCart = async () => {
         setLoadingAddToCard(true);
         await addToCart({
@@ -95,6 +102,7 @@ const ProductCard: React.FC<ProductCardProps & { productId?: string }> = ({
         setLoadingAddToCard(false);
     };
 
+    // Buy now
     const handleBuyNow = async () => {
         setLoadingBuy(true);
         await addToCart({
@@ -106,6 +114,7 @@ const ProductCard: React.FC<ProductCardProps & { productId?: string }> = ({
         setLoadingBuy(false);
     };
 
+    //White listed
     const whitelistedProductHandler = async () => {
         const whitelistedProduct =
             whitelist_config.is_whitelisted &&

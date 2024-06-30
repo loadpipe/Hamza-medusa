@@ -1,36 +1,40 @@
 const vendors = [
     {
+        id: 0,
+        vendorName: 'Legendary Light Design',
+    },
+    {
         id: 1,
-        vendorName: 'Medusa Merch',
-    },
-    {
-        id: 2,
-        vendorName: 'Echo Rift',
-    },
-    {
-        id: 3,
         vendorName: 'Dauntless',
     },
     {
-        id: 4,
+        id: 2,
+        vendorName: 'Medusa Merch',
+    },
+    {
+        id: 3,
         vendorName: 'Drones',
     },
     {
-        id: 5,
+        id: 4,
         vendorName: 'Legos',
     },
     {
-        id: 6,
+        id: 5,
         vendorName: 'Board Games',
     },
     {
-        id: 7,
+        id: 6,
         vendorName: 'Workout Gear',
     },
 
     {
         id: 8,
         vendorName: 'The Gaming Store',
+    },
+    {
+        id: 7,
+        vendorName: 'Echo Rift',
     },
 ];
 

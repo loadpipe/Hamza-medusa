@@ -100,7 +100,7 @@ const ProductCardGroup = ({ vendorName, filterByRating, category }: Props) => {
         <Box maxW={'941px'} width="100%" height="100%" px="1rem">
             <StoreFilterDisplay />
             <Grid
-                mt="2rem"
+                mt={{ base: '0px', md: '3rem' }}
                 templateColumns={{
                     base: 'repeat(2, 1fr)',
                     lg: 'repeat(3, 1fr)',
@@ -114,8 +114,12 @@ const ProductCardGroup = ({ vendorName, filterByRating, category }: Props) => {
                               .map((variant: any) => variant.prices)
                               .flat();
 
+                          const selectedPrice = variantPrices.find(
+                              (p: any) =>
+                                  p.currency_code === preferred_currency_code
+                          );
                           const productPricing = formatCryptoPrice(
-                              variantPrices[0].amount,
+                              selectedPrice?.amount ?? 0,
                               preferred_currency_code as string
                           );
                           const reviewCounter = product.reviews.length;
@@ -132,10 +136,11 @@ const ProductCardGroup = ({ vendorName, filterByRating, category }: Props) => {
                           return (
                               <GridItem key={index} w="100%">
                                   <ProductCardStore
+                                      key={index}
                                       productHandle={products[index].handle}
-                                      variantID={variantID}
                                       reviewCount={reviewCounter}
-                                      totalRating={roundedAvgRating}
+                                      totalRating={avgRating}
+                                      variantID={variantID}
                                       countryCode={product.countryCode}
                                       productName={product.title}
                                       productPrice={productPricing}
@@ -146,6 +151,13 @@ const ProductCardGroup = ({ vendorName, filterByRating, category }: Props) => {
                                       hasDiscount={product.is_giftcard}
                                       discountValue={product.discountValue}
                                       productId={product.id}
+                                      inventory={
+                                          product.variants[0].inventory_quantity
+                                      }
+                                      allow_backorder={
+                                          product.variants[0].allow_backorder
+                                      }
+                                      storeId={product.store_id}
                                   />
                               </GridItem>
                           );

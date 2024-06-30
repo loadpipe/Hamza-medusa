@@ -182,6 +182,45 @@ export class RelayClientWrapper {
             publishedTagId: randomBytes(32),
         });
 
+        await sleep(25);
+        console.log('setting currency 1');
+        await client.updateShopManifest({
+            addAcceptedCurrency: {
+                chainId: 11155111,
+                tokenAddr: hexToBytes(
+                    '0x822585D682B973e4b1B47C0311f162b29586DD02'
+                ),
+            },
+        });
+        console.log('setting currency 2');
+        await client.updateShopManifest({
+            addAcceptedCurrency: {
+                chainId: 11155111,
+                tokenAddr: hexToBytes(
+                    '0xbe9fe9b717c888a2b2ca0a6caa639afe369249c5'
+                ),
+            },
+        });
+        console.log('setting currency 3');
+        await client.updateShopManifest({
+            addAcceptedCurrency: {
+                chainId: 11155111,
+                tokenAddr: hexToBytes(
+                    '0x0000000000000000000000000000000000000000'
+                ),
+            },
+        });
+
+        console.log('setting payee');
+        await client.updateShopManifest({
+            addPayeeContract: {
+                chainId: 11155111,
+                addr: hexToBytes('0x74b7284836F753101bD683C3843e95813b381f18'),
+                name: 'hamza-switch',
+                callAsContract: true,
+            },
+        });
+
         //add to cache
         cache.add(
             shopId,
@@ -226,34 +265,49 @@ export class RelayClientWrapper {
         return rc;
     }
 
-    async pullEvents(): Promise<any> {
-        await this._client.connect();
-        const stream = await this._client.createEventStream();
-        for await (const event of stream) {
-            if (event.event.updateOrder?.itemsFinalized) {
-                return bytesToHex(event.event.updateOrder.orderId);
-            }
-        }
-        return;
-    }
-
     //TODO: check cartId against what's in event
     async getCartFinalizedEvent(cartId: HexString): Promise<any> {
-        await this._client.connect();
-        const stream = await this._client.createEventStream();
-        for await (const event of stream) {
-            if (event.event?.updateOrder?.itemsFinalized) {
-                if (
-                    bytesToHex(
-                        event.event?.updateOrder?.itemsFinalized.orderHash
-                    ) == keccak256(hexToBytes(cartId))
-                ) {
-                    console.log(event.event?.updateOrder?.itemsFinalized);
-                    return event?.event.updateOrder?.itemsFinalized;
+        if (!this.eventStream) {
+            this.eventStream = await this._client.createEventStream();
+        }
+
+        const streams = this.eventStream?.tee();
+        console.log('stream locked: ', streams[0]?.locked);
+        return new Promise(async (resolve, reject) => {
+            for await (const event of streams[0]) {
+                if (event.event?.updateOrder?.itemsFinalized) {
+                    if (
+                        bytesToHex(
+                            event.event?.updateOrder?.itemsFinalized.orderHash
+                        ) == keccak256(hexToBytes(cartId))
+                    ) {
+                        console.log(event.event?.updateOrder?.itemsFinalized);
+                        this.eventStream = streams[1];
+                        resolve(event?.event.updateOrder?.itemsFinalized);
+                    }
                 }
             }
+
+            this.eventStream = streams[1];
+            resolve(null);
+        });
+    }
+
+    async listenForEvents(cartId: HexString): Promise<any> {
+        if (!this.eventStream) {
+            this.eventStream = await this._client.createEventStream();
         }
-        return null;
+
+        const streams = this.eventStream?.tee();
+        console.log('stream locked: ', streams[0]?.locked);
+        return new Promise(async (resolve, reject) => {
+            for await (const event of streams[0]) {
+                console.log(event);
+            }
+
+            this.eventStream = streams[1];
+            resolve(null);
+        });
     }
 
     keyCardToString(): string {
@@ -269,17 +323,6 @@ export class RelayClientWrapper {
     }
 
     async enrollKeycard(): Promise<void> {
-        /*
-        const keyCardAccount = privateKeyToAccount(
-            bufferToString(this._keyCard)
-        );
-
-        const keyCardWallet = createWalletClient({
-            keyCardAccount,
-            chain: sepolia,
-            transport: http(),
-        });
-        */
         const walletPrivKey =
             '0x65c1196c888ae6bb110077201346dfe426b220ce1d49a366102a2d85e7ad0e35';
         const account: PrivateKeyAccount = privateKeyToAccount(walletPrivKey);
@@ -365,6 +408,17 @@ export class RelayClientWrapper {
             addAcceptedCurrency: {
                 chainId: 11155111,
                 tokenAddr: hexToBytes(address),
+            },
+        });
+    }
+
+    async setPayee(name: string, address: HexString) {
+        const pb = await this._client.updateShopManifest({
+            addPayee: {
+                chainId: 11155111,
+                addr: hexToBytes(address),
+                name,
+                callAsContract: true,
             },
         });
     }

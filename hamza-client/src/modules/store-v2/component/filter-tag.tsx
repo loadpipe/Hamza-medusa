@@ -7,12 +7,13 @@ const FilterTag = (props: any) => {
         <Flex>
             <Flex
                 backgroundColor={'#020202'}
-                borderColor={'secondary.onyx.900'}
+                borderColor={'#3E3E3E'}
                 display={'flex'}
                 flexDirection={'row'}
                 alignItems={'center'}
                 borderWidth={'1px'}
                 borderRadius={'49px'}
+                height={'63px'}
                 style={{ padding: '10px 24px', cursor: 'pointer' }}
             >
                 <Image src={props.img} alt={props.name} />

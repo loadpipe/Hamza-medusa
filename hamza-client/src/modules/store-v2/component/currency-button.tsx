@@ -22,14 +22,17 @@ const CurrencyButton: React.FC<CurrencyButtonProps> = ({ currencyName }) => {
                 }
                 display={'flex'}
                 flexDirection={'row'}
+                justifyContent={'center'}
                 alignItems={'center'}
                 borderWidth={'1px'}
                 borderRadius={'49px'}
                 cursor="pointer"
+                height={'60px'}
                 color={
                     currencyFilterSelect === currencyName ? 'black' : 'white'
                 }
                 style={{ padding: '10px 24px' }}
+                transition="background 0.1s ease-in-out, color 0.1s ease-in-out"
                 _hover={{
                     background: 'white',
                     color: 'black',
@@ -37,7 +40,12 @@ const CurrencyButton: React.FC<CurrencyButtonProps> = ({ currencyName }) => {
                 onClick={() => setCurrencyFilterSelect(currencyName)}
             >
                 <Image src={currencyIcons[currencyName]} alt={currencyName} />
-                <Text ml="1rem">{currencyName}</Text>
+                <Text
+                    fontSize={{ base: '14px', md: '16px' }}
+                    ml={{ base: '0.5rem', md: '0.75rem' }}
+                >
+                    {currencyName}
+                </Text>
             </Flex>
         </Flex>
     );

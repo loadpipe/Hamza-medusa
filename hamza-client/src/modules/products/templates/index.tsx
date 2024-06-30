@@ -97,9 +97,9 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
 
     return (
         <Flex
-            flexDirection={'column'}
-            justifyContent={'center'}
-            alignItems={'center'}
+            flexDirection="column"
+            justifyContent="center"
+            alignItems="center"
             mx="1rem"
         >
             <Flex mt="2rem">
@@ -108,14 +108,14 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
 
             <Flex
                 maxWidth="1280px"
-                width={'100%'}
+                width="100%"
                 my="2rem"
-                gap={'26px'}
-                justifyContent={'center'}
+                gap="26px"
+                justifyContent="center"
                 flexDirection={{ base: 'column', md: 'row' }}
             >
                 <Flex flex="1" order={{ base: 2, md: 1 }}>
-                    <Flex flexDirection={'column'}>
+                    <Flex flexDirection="column">
                         <ProductInfo />
                         <Box mt="1.5rem">
                             <Tweet
@@ -127,9 +127,9 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
                 </Flex>
                 <Flex
                     maxW={{ base: '100%', md: '504px' }}
-                    width={'100%'}
+                    width="100%"
                     flex="0 0 auto"
-                    justifyContent={'center'}
+                    justifyContent="center"
                     order={{ base: 1, md: 2 }}
                     alignSelf="flex-start"
                 >

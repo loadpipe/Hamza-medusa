@@ -81,8 +81,7 @@ const OrderOverview = ({ orders }: { orders: Order[] }) => {
     console.log('Orders: ', orders);
 
     let countryCode = useParams().countryCode as string;
-    if (process.env.NEXT_PUBLIC_FORCE_US_COUNTRY)
-        countryCode = process.env.NEXT_PUBLIC_FORCE_US_COUNTRY;
+    if (process.env.NEXT_PUBLIC_FORCE_US_COUNTRY) countryCode = 'us';
 
     const router = useRouter();
 

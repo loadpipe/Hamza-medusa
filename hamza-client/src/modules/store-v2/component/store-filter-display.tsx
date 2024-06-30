@@ -13,7 +13,7 @@ const StoreFilterDisplay = () => {
             width={'100%'}
             flexDirection={'column'}
         >
-            <Flex flexDirection={'column'} gap="1.5rem">
+            <Flex flexDirection={'column'} gap="1rem">
                 <Flex gap="10px">
                     <Text color="White" fontSize={'18px'}>
                         Home
@@ -27,16 +27,20 @@ const StoreFilterDisplay = () => {
                 </Flex>
                 <Flex gap="20px" overflow={'hidden'}>
                     <CategoryTopButton
+                        categoryType="home_light"
+                        categoryName="Legendary Light Design"
+                    />
+                    <CategoryTopButton
+                        categoryType="gadgets"
+                        categoryName="Dauntless"
+                    />
+                    <CategoryTopButton
                         categoryType="clothes"
                         categoryName="Medusa Merch"
                     />
                     <CategoryTopButton
                         categoryType="games"
                         categoryName="Echo Rift"
-                    />
-                    <CategoryTopButton
-                        categoryType="gadgets"
-                        categoryName="Dauntless"
                     />
                 </Flex>
                 <Text fontSize={'18px'} color="primary.indigo.900">

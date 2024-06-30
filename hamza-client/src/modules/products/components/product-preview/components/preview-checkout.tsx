@@ -64,7 +64,8 @@ const PreviewCheckout = () => {
         if (productData && productData.variants) {
             setSizes(getUniqueOptions(productData.variants, 0));
             setColors(getUniqueOptions(productData.variants, 1));
-            setSelectedPrice(productData.variants[0].prices[0].amount);
+            const price = productData.variants[0].prices.find((p: any) => p.currency_code === preferred_currency_code ?? 'usdt');
+            setSelectedPrice(price?.amount ?? 0);
             console.log(productData);
         }
     }, [productData]);
@@ -93,7 +94,7 @@ const PreviewCheckout = () => {
             console.log('white list config ', whitelist_config);
             const whitelistedProduct =
                 whitelist_config.is_whitelisted &&
-                whitelist_config.whitelisted_stores.includes(data.data)
+                    whitelist_config.whitelisted_stores.includes(data.data)
                     ? true
                     : false;
 
@@ -106,9 +107,9 @@ const PreviewCheckout = () => {
 
     const inStock =
         productData &&
-        productData.variants &&
-        productData.variants[0] &&
-        productData.variants[0].inventory_quantity > 0
+            productData.variants &&
+            productData.variants[0] &&
+            productData.variants[0].inventory_quantity > 0
             ? true
             : false;
 
@@ -164,7 +165,7 @@ const PreviewCheckout = () => {
                         fontSize={{ base: '18px', md: '32px' }}
                         color="white"
                     >
-                        {`${formatCryptoPrice(parseInt(price), preferred_currency_code ?? 'usdc')} ${preferred_currency_code?.toUpperCase() ?? 'USDC'}`}
+                        {`${formatCryptoPrice(parseFloat(price), preferred_currency_code ?? 'usdc')} ${preferred_currency_code?.toUpperCase() ?? 'USDC'}`}
                     </Heading>
                     <Text
                         style={{ textDecoration: 'line-through' }}
@@ -173,7 +174,7 @@ const PreviewCheckout = () => {
                         display={{ base: 'none', md: 'block' }}
                         color="#555555"
                     >
-                        {`${formatCryptoPrice(parseInt(price), preferred_currency_code ?? 'usdc')}`}
+                        {`${formatCryptoPrice(parseFloat(price), preferred_currency_code ?? 'usdc')}`}
                     </Text>
                 </Flex>
 
@@ -184,7 +185,7 @@ const PreviewCheckout = () => {
                     fontSize={'18px'}
                     color="white"
                 >
-                    {`${formatCryptoPrice(parseInt(price), preferred_currency_code ?? 'usdc')} ${preferred_currency_code?.toUpperCase() ?? 'USDC'}`}
+                    {`${formatCryptoPrice(parseFloat(price), preferred_currency_code ?? 'usdc')} ${preferred_currency_code?.toUpperCase() ?? 'USDC'}`}
                 </Heading>
                 <Flex gap="5px" height="20px">
                     <Flex flexDirection={'row'}>
@@ -303,7 +304,7 @@ const PreviewCheckout = () => {
                                     height={{ base: '40px', md: '52px' }}
                                     borderColor={
                                         color === selectedColor ||
-                                        (selectedColor === '' && index === 0)
+                                            (selectedColor === '' && index === 0)
                                             ? 'white'
                                             : 'transparent'
                                     }
@@ -437,8 +438,8 @@ const PreviewCheckout = () => {
                     {!inStock && isWhitelisted
                         ? 'Add to cart'
                         : inStock
-                          ? 'Add to Cart'
-                          : 'Out of Stock'}
+                            ? 'Add to Cart'
+                            : 'Out of Stock'}
                 </Button>
                 {!inStock && isWhitelisted && (
                     <span className="text-xs text-white px-4 py-2">

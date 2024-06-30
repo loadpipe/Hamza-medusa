@@ -67,13 +67,17 @@ export const { chains, publicClient, webSocketPublicClient } = configureChains(
     ]
 );
 
-export const SwitchNetwork = () => {
+type SwitchNetworkProps = {
+    enabled: boolean
+}
+
+export const SwitchNetwork = ({ enabled }: SwitchNetworkProps) => {
     const { chain } = useNetwork();
     const { error, isLoading, pendingChainId, switchNetwork } =
         useSwitchNetwork();
     const { isOpen, onOpen, onClose } = useDisclosure();
 
-    const voidFunction = () => {};
+    const voidFunction = () => { };
 
     const requiredChains = [11155111]; // Sepolia and Optimism Sepolia
 
@@ -82,40 +86,46 @@ export const SwitchNetwork = () => {
     }, [onOpen]);
 
     useEffect(() => {
-        if (chain && requiredChains.includes(chain.id)) {
-            onClose();
-        } else {
-            onOpen();
+        if (enabled) {
+            if (chain && requiredChains.includes(chain.id)) {
+                onClose();
+            } else {
+                onOpen();
+            }
         }
     }, [chain, onClose, onOpen, requiredChains]);
 
     if (!chain) return <div>Loading...</div>;
 
-    return (
-        <Modal isOpen={isOpen} onClose={() => {}}>
-            <ModalOverlay />
-            <ModalContent>
-                <ModalHeader>Switch Network</ModalHeader>
-                <ModalBody>
-                    <p>The currently selected chain is not supported!</p>
-                    <Button
-                        disabled={!switchNetwork || isLoading}
-                        onClick={() =>
-                            switchNetwork
-                                ? switchNetwork(11155111)
-                                : voidFunction()
-                        }
-                    >
-                        Switch to Sepolia testnet
-                    </Button>
-                    {error && <p>Error: {error.message}</p>}
-                    {isLoading && pendingChainId && (
-                        <p>Switching to chain ID {pendingChainId}...</p>
-                    )}
-                </ModalBody>
-            </ModalContent>
-        </Modal>
-    );
+    if (enabled) {
+        return (
+            <Modal isOpen={isOpen} onClose={() => { }}>
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalHeader>Switch Network</ModalHeader>
+                    <ModalBody>
+                        <p>The currently selected chain is not supported!</p>
+                        <Button
+                            disabled={!switchNetwork || isLoading}
+                            onClick={() =>
+                                switchNetwork
+                                    ? switchNetwork(11155111)
+                                    : voidFunction()
+                            }
+                        >
+                            Switch to Sepolia testnet
+                        </Button>
+                        {error && <p>Error: {error.message}</p>}
+                        {isLoading && pendingChainId && (
+                            <p>Switching to chain ID {pendingChainId}...</p>
+                        )}
+                    </ModalBody>
+                </ModalContent>
+            </Modal>
+        );
+    } else {
+        return <></>
+    }
 };
 // const { connectors } = getDefaultWallets({
 //     appName: 'op_sep',

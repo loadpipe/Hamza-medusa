@@ -6,18 +6,11 @@ import { Flex, Container, Box } from '@chakra-ui/react';
 import SideMenu from './component/store-side-menu';
 import useStorePage from '@store/store-page/store-page';
 import useSideFilter from '@store/store-page/side-filter';
-import MobileFilter from './component/mobile-filter';
+import MobileFilter from './component/mobile-fitler/mobile-filter';
 import ProductCardGroup from '@modules/products/components/product-group-store';
 import StoreFilterDisplay from '@modules/store-v2/component/store-filter-display';
 
 const StoreTemplate = () => {
-    const gridLayout = {
-        base: 2,
-        sm: 2,
-        md: 2,
-        lg: 3,
-    };
-
     //ipad pro 1024px
     //ipad air 820px (hide left)
 
@@ -25,7 +18,7 @@ const StoreTemplate = () => {
     const { reviewFilterSelect } = useSideFilter();
 
     //TODO: make zustand state for default vendor "all"
-    const [vendorName, setVendorName] = useState('Medusa Merch');
+    const [vendorName, setVendorName] = useState('Legendary Light Design');
     useEffect(() => {
         if (categorySelect) {
             setVendorName(categorySelect);
@@ -57,32 +50,3 @@ const StoreTemplate = () => {
 };
 
 export default StoreTemplate;
-
-{
-    /* <Flex
-                width={'100%'}
-                flexDirection={{ base: 'column', md: 'row' }}
-                maxWidth={'1280px'}
-                gap="24px"
-                mx="auto" // Center the container horizontally
-            >
-                <SideMenu />
-                <MobileFilter />
-                <Flex
-                    justifyContent={'center'}
-                    alignItems={'center'}
-                    maxW={'941px'}
-                    gap={'24px'}
-                    wrap={'wrap'}
-                    width="100%"
-                    height="100%"
-                >
-                    <MobileCard />
-                    <MobileCard />
-                    <MobileCard />
-                    <MobileCard />
-                    <MobileCard />
-                    <MobileCard />
-                </Flex>
-            </Flex> */
-}

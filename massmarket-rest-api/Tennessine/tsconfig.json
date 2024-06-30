@@ -10,5 +10,8 @@
     {
       "path": "./packages/client"
     },
+    {
+      "path": "./packages/frontend"
+    }
   ]
 }

@@ -299,6 +299,8 @@ export default class OrderService extends MedusaOrderService {
             relations: ['cart.items.variant.product', 'store.owner'],
         })) as Order[];
         console.log(orders);
+        // return orders;
+
         const products = [];
 
         orders.forEach((order) => {
@@ -307,12 +309,24 @@ export default class OrderService extends MedusaOrderService {
                     ...item.variant.product,
                     order_id: order.id,
                     store_name: order.store.name, // Add store.name to the product
+                    currency_code: item.currency_code,
+                    unit_price: item.unit_price,
                 };
                 products.push(product);
             });
         });
 
-        return products;
+        const seen = new Set();
+        const uniqueCart = [];
+
+        for (const item of products) {
+            if (!seen.has(item.id)) {
+                seen.add(item.id);
+                uniqueCart.push(item);
+            }
+        }
+
+        return uniqueCart;
     }
 
     async listCustomerOrders(

@@ -82,13 +82,17 @@ export async function addToCart({
     countryCode: string;
     currencyCode: string;
 }) {
+    if (process.env.NEXT_PUBLIC_FORCE_US_COUNTRY)
+        countryCode = 'us';
     const cart = await getOrSetCart(countryCode).then((cart) => cart);
 
     if (!cart) {
+        console.log('Missing cart ID ', countryCode);
         return 'Missing cart ID';
     }
 
     if (!variantId) {
+        console.log('Missing var ID');
         return 'Missing product variant ID';
     }
 
@@ -101,6 +105,7 @@ export async function addToCart({
         });
         revalidateTag('cart');
     } catch (e) {
+        console.error(e);
         return 'Error adding item to cart';
     }
 }
@@ -166,9 +171,9 @@ export async function enrichLineItems(
     regionId: string
 ): Promise<
     | Omit<
-          ExtendedLineItem,
-          'beforeInsert' | 'beforeUpdate' | 'afterUpdateOrLoad'
-      >[]
+        ExtendedLineItem,
+        'beforeInsert' | 'beforeUpdate' | 'afterUpdateOrLoad'
+    >[]
     | undefined
 > {
     // Prepare query parameters

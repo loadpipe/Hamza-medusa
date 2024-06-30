@@ -2,6 +2,7 @@
 import { Box, Button, Text, Flex, Image } from '@chakra-ui/react';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { formatAddress } from '@lib/util/format-address';
+import { MdOutlineAccountBalanceWallet } from 'react-icons/md';
 
 export const WalletConnectButton = () => {
     return (
@@ -24,7 +25,9 @@ export const WalletConnectButton = () => {
                     authenticationStatus === 'authenticated';
 
                 return (
-                    <div
+                    <Flex
+                        width={'100%'}
+                        height={'100%'}
                         {...(!ready && {
                             'aria-hidden': true,
                             style: {
@@ -37,28 +40,27 @@ export const WalletConnectButton = () => {
                         {(() => {
                             if (!connected) {
                                 return (
-                                    <Button
-                                        h="2.5rem"
-                                        borderRadius={'50px'}
+                                    <Flex
+                                        width={'100%'}
+                                        justifyContent={'center'}
+                                        alignItems={'center'}
+                                        gap={'8px'}
+                                        backgroundColor={'primary.green.900'}
                                         onClick={openConnectModal}
-                                        style={{
-                                            backgroundColor: '#94D42A',
-                                            outline: 'none',
-                                            transition: 'all 0.3s ease',
-                                        }}
                                     >
+                                        <Flex alignSelf={'center'}>
+                                            <MdOutlineAccountBalanceWallet
+                                                size={30}
+                                            />
+                                        </Flex>
                                         <Text
-                                            className="font-semibold"
-                                            fontFamily={'Sora'}
-                                            color="black"
-                                            fontSize={{
-                                                base: '12px',
-                                                md: '16px',
-                                            }}
+                                            alignSelf={'center'}
+                                            fontWeight={'600'}
+                                            fontSize={'20px'}
                                         >
                                             Connect Wallet
                                         </Text>
-                                    </Button>
+                                    </Flex>
                                 );
                             }
                             if (chain && chain.unsupported) {
@@ -70,7 +72,11 @@ export const WalletConnectButton = () => {
                                 );
                             }
                             return (
-                                <Flex flexDirection={'row'}>
+                                <Flex
+                                    px="1rem"
+                                    width={'100%'}
+                                    flexDirection={'row'}
+                                >
                                     <Box
                                         mr="0.5rem"
                                         w="2.5rem"
@@ -89,9 +95,9 @@ export const WalletConnectButton = () => {
                                             />
                                         )}
                                     </Box>
-                                    <Button
-                                        h="2.5rem"
-                                        borderRadius={'50px'}
+                                    <Flex
+                                        flex={1}
+                                        borderRadius={'0px'}
                                         backgroundColor={'#2C272D'}
                                         onClick={openAccountModal}
                                         style={{
@@ -100,20 +106,26 @@ export const WalletConnectButton = () => {
                                         }}
                                     >
                                         <Text
+                                            as="p"
+                                            alignSelf={'center'}
                                             textStyle="h2"
-                                            color="white"
-                                            fontSize={{
-                                                base: '12px',
-                                                md: '20px',
-                                            }}
+                                            color="#8C8C8C"
                                         >
                                             {formatAddress(account.address)}
                                         </Text>
-                                    </Button>
+                                        <Text
+                                            alignSelf={'center'}
+                                            ml="auto"
+                                            fontSize={'40px'}
+                                            color="primary.green.900"
+                                        >
+                                            &#x2022;
+                                        </Text>
+                                    </Flex>
                                 </Flex>
                             );
                         })()}
-                    </div>
+                    </Flex>
                 );
             }}
         </ConnectButton.Custom>

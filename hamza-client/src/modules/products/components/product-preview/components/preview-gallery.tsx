@@ -76,8 +76,8 @@ const PreviewGallery = () => {
                                 {images.length > 0 && (
                                     <Image
                                         // src="path/to/your/image2.jpg"
-                                        src={(images[0] as any).url}
-                                        alt="Left Image"
+                                        src={images.length > 1 ? (images[1] as any).url : (images[0] as any).url}
+                                        alt="Top Left Image"
                                         width="100%"
                                         height="100%"
                                         objectFit="cover"
@@ -101,8 +101,8 @@ const PreviewGallery = () => {
                                 {images.length > 0 && (
                                     <Image
                                         // src="path/to/your/image2.jpg"
-                                        src={(images[0] as any).url}
-                                        alt="Left Image"
+                                        src={images.length > 2 ? (images[2] as any).url : (images[0] as any).url}
+                                        alt="Top Right Image"
                                         width="100%"
                                         height="100%"
                                         objectFit="cover"
@@ -123,8 +123,8 @@ const PreviewGallery = () => {
                                 {images.length > 0 && (
                                     <Image
                                         // src="path/to/your/image2.jpg"
-                                        src={(images[0] as any).url}
-                                        alt="Left Image"
+                                        src={images.length > 3 ? (images[3] as any).url : (images[0] as any).url}
+                                        alt="Bottom Left Image"
                                         width="100%"
                                         height="100%"
                                         objectFit="cover"
@@ -148,8 +148,8 @@ const PreviewGallery = () => {
                                 {images.length > 0 && (
                                     <Image
                                         // src="path/to/your/image2.jpg"
-                                        src={(images[0] as any).url}
-                                        alt="Left Image"
+                                        src={images.length > 4 ? (images[4] as any).url : (images[0] as any).url}
+                                        alt="Bottom Right Image"
                                         width="100%"
                                         height="100%"
                                         objectFit="cover"

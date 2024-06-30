@@ -15,7 +15,7 @@ import { InjectedConnector } from 'wagmi/connectors/injected';
 import { useConnectModal } from '@rainbow-me/rainbowkit';
 
 const RecommendedItems = () => {
-    const [vendorName, setVendorName] = useState('Medusa Merch');
+    const [vendorName, setVendorName] = useState('Legendary Light Design');
     const { openConnectModal } = useConnectModal();
     const { connector: activeConnector, isConnected } = useAccount();
     const { connect } = useConnect({
@@ -33,6 +33,7 @@ const RecommendedItems = () => {
     // Dynamic button color change
     //TODO: get these from database
     const VENDOR_NAMES = {
+        lighting: 'Legendary Light Design',
         quality: 'Echo Rift',
         medusa: 'Medusa Merch',
         headphones: 'Dauntless',
@@ -179,6 +180,34 @@ const RecommendedItems = () => {
                     mx={12}
                     my={6}
                 >
+                    <Button
+                        fontWeight="italic"
+                        name="Legendary Light & Design"
+                        bg={
+                            VENDOR_NAMES.lighting === vendorName
+                                ? 'white'
+                                : 'black'
+                        }
+                        color={
+                            VENDOR_NAMES.lighting === vendorName
+                                ? 'black'
+                                : 'white'
+                        }
+                        size="lg"
+                        width="250px"
+                        borderRadius="full"
+                        onClick={() => {
+                            setVendorName('Legendary Light Design');
+                        }}
+                    >
+                        <Image
+                            className="mr-2"
+                            src={game}
+                            alt={'Img of a game'}
+                            height={22}
+                        />
+                        Headphone Vendor
+                    </Button>
                     <Button
                         fontWeight="italic"
                         bg={

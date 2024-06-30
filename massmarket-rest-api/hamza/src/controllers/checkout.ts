@@ -106,51 +106,47 @@ export const checkoutController = {
                         }
 
                         //commit cart
-                        if (isZeroAddress(input.paymentCurrency))
-                            input.paymentCurrency = undefined;
-
-                        /*
-                        {
-                            "paymentId":"l8pGmt++4droph+ADcYw6qMGB5Vic+C1aNP/5WhMXIw=",
-                            "subTotal":"0.01",
-                            "salesTax":"0.00",
-                            "total":"0.01",
-                            "ttl":"1719308448",
-                            "orderHash":"MmSGdPshr20yvZMewiio+oK//SeUzOBHTydE/Bz9p6E=",
-                            "currencyAddr":"vp/ptxfIiKKyygpsqmOa/jaSScU=",
-                            "totalInCrypto":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKQQ=",
-                            "payeeAddr":"dLcoSDb3UxAb1oPDhD6VgTs4Hxg=",
-                            "isPaymentEndpoint":true,
-                            "shopSignature":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="}
-                        */
                         console.log('COMMITTING CART');
                         await rc.commitCart(cartId, input.paymentCurrency);
 
+                        //try a number of times to retrieve the checkout event
                         const numRetries = 3;
                         let retry = 0;
                         while (retry < numRetries) {
                             console.log('trying to get checkout event...');
                             const event =
-                                await rc.getCartFinalizedEvent(cartId);
+                                await await rc.getCartFinalizedEvent(cartId);
+
+                            //if event is gotten, then return output from it
                             if (event) {
+                                //order id or order hash
                                 checkoutOutput.orderHash = bytesToHex(
                                     event.orderHash
                                 );
+
+                                //ttl & amount
                                 checkoutOutput.ttl = parseInt(event.ttl);
                                 checkoutOutput.amount = bytesToHex(
                                     event.totalInCrypto
                                 );
+
+                                //currency & payee address
                                 checkoutOutput.currency = input.paymentCurrency
                                     ? bytesToHex(event.currencyAddr)
                                     : '0x0000000000000000000000000000000000000000';
                                 checkoutOutput.payeeAddress = bytesToHex(
                                     event.payeeAddr
                                 );
+
+                                //this is passed into multiPay
+                                checkoutOutput.isPaymentEndpoint =
+                                    event.isPaymentEndpoint;
+
+                                //this is like a checksum
                                 checkoutOutput.paymentId = bytesToHex(
                                     event.paymentId
                                 );
-                                checkoutOutput.isPaymentEndpoint =
-                                    event.isPaymentEndpoint;
+
                                 checkoutOutput.success = true;
                                 break;
                             } else {
@@ -163,8 +159,6 @@ export const checkoutController = {
 
                         output = checkoutOutput;
                     }
-
-                    await rc.disconnect();
                 }
 
                 console.log('returning output', output);

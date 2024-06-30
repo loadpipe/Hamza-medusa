@@ -12,7 +12,7 @@ import SearchModalWrapper from '@modules/search/templates/search-wrapper';
 import SkeletonProductGrid from '@modules/skeletons/components/skeleton-product-grid';
 
 const SearchAndFilterPanel = () => {
-    const [vendorName, setVendorName] = useState('Medusa Merch');
+    const [vendorName, setVendorName] = useState('Legendary Light Design');
     const [isClient, setIsClient] = useState(false);
 
     // Ensure that the component knows when it's running on the client
