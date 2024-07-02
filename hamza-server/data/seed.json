@@ -40,7 +40,7 @@
                 "id": "manual-fulfillment"
             },
             "price_type": "flat_rate",
-            "amount": 1.4
+            "amount": 1000
         },
         {
             "name": "PostFake Express",
@@ -50,7 +50,7 @@
                 "id": "manual-fulfillment"
             },
             "price_type": "flat_rate",
-            "amount": 1.2
+            "amount": 1500
         },
         {
             "name": "PostFake Return",
@@ -61,7 +61,7 @@
             },
             "price_type": "flat_rate",
             "is_return": true,
-            "amount": 1.5
+            "amount": 1000
         },
         {
             "name": "I want to return it myself",
@@ -92,7 +92,7 @@
                 "id": "manual-fulfillment"
             },
             "price_type": "flat_rate",
-            "amount": 1.2
+            "amount": 1200
         },
         {
             "name": "FakeEx Return",
@@ -103,7 +103,7 @@
             },
             "price_type": "flat_rate",
             "is_return": true,
-            "amount": 1.8
+            "amount": 800
         },
         {
             "name": "I want to return it myself",
