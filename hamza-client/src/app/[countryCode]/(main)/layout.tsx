@@ -16,7 +16,7 @@ export default async function PageLayout(props: { children: React.ReactNode }) {
         <div
             style={{
                 background:
-                    'linear-gradient(to bottom, #020202 5%, #2C272D 20%)',
+                    'linear-gradient(to bottom, #020202 20vh, #2C272D 50vh)',
             }}
         >
             <Nav />
