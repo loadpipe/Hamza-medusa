@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { Text, Flex } from '@chakra-ui/react';
 import currencyIcons from '../data/crypto-currency-icons';
 import useModalFilter from '@store/store-page/filter-modal';
+import useHomeModalFilter from '@store/home-page/home-filter/home-filter';
 interface CurrencyButtonProps {
     currencyName: 'ETH' | 'USDC' | 'USDT';
 }
@@ -10,15 +11,15 @@ interface CurrencyButtonProps {
 const CurrencyModalButton: React.FC<CurrencyButtonProps> = ({
     currencyName,
 }) => {
-    const { modalCurrencyFilterSelect, setModalCurrencyFilterSelect } =
-        useModalFilter();
+    const { homeModalCurrencyFilterSelect, setHomeModalCurrencyFilterSelect } =
+        useHomeModalFilter();
 
     return (
         <Flex>
             <Flex
                 borderColor={'secondary.davy.900'}
                 backgroundColor={
-                    modalCurrencyFilterSelect === currencyName
+                    homeModalCurrencyFilterSelect === currencyName
                         ? 'white'
                         : 'transparent'
                 }
@@ -30,7 +31,7 @@ const CurrencyModalButton: React.FC<CurrencyButtonProps> = ({
                 borderRadius={'49px'}
                 cursor="pointer"
                 color={
-                    modalCurrencyFilterSelect === currencyName
+                    homeModalCurrencyFilterSelect === currencyName
                         ? 'black'
                         : 'white'
                 }
@@ -40,7 +41,7 @@ const CurrencyModalButton: React.FC<CurrencyButtonProps> = ({
                     background: 'white',
                     color: 'black',
                 }}
-                onClick={() => setModalCurrencyFilterSelect(currencyName)}
+                onClick={() => setHomeModalCurrencyFilterSelect(currencyName)}
             >
                 <Image src={currencyIcons[currencyName]} alt={currencyName} />
                 <Text

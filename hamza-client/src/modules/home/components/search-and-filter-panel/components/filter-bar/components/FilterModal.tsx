@@ -13,7 +13,7 @@ import {
     Box,
 } from '@chakra-ui/react';
 import React from 'react';
-// import FilterIcon from '../../../../../../public/images/categories/mobile-filter.svg';
+import FilterIcon from '../../../../../../../../public/images/categories/mobile-filter.svg';
 import Image from 'next/image';
 import currencies from '../data/currency-icons';
 import ReviewModalButton from './ReviewModalButton';
@@ -22,8 +22,10 @@ import CurrencyModalButton from './CurrencyModalButton';
 import useStorePage from '@store/store-page/store-page';
 import useSideFilter from '@store/store-page/side-filter';
 import useModalFilter from '@store/store-page/filter-modal';
+import useHomeProductsPage from '@store/home-page/product-layout/product-layout';
+import useHomeModalFilter from '@store/home-page/home-filter/home-filter';
 import RangeSliderModal from '@modules/store-v2/component/mobile-fitler/components/range-slider-modal';
-
+import vendors from '../../../data/data';
 interface FilterModalProps {
     isOpen: boolean;
     onClose: () => void;
@@ -35,12 +37,9 @@ const FilterModalHome: React.FC<FilterModalProps> = ({ isOpen, onClose }) => {
         setReviewStarsSelect,
         setCategorySelect,
         setCategoryTypeSelect,
-    } = useStorePage();
+    } = useHomeProductsPage();
     const {
-        categoryFilterSelect,
-        categoryTypeFilterSelect,
         reviewFilterSelect,
-        currencyFilterSelect,
         setReviewFilterSelect,
         setCurrencyFilterSelect,
         setCategoryFilterSelect,
@@ -48,13 +47,13 @@ const FilterModalHome: React.FC<FilterModalProps> = ({ isOpen, onClose }) => {
     } = useSideFilter();
 
     const {
-        modalCurrencyFilterSelect,
-        modalCategoryFilterSelect,
-        modalCategoryTypeFilterSelect,
-        setModalCategoryTypeFilterSelect,
-        setModalCurrencyFilterSelect,
-        setModalCategoryFilterSelect,
-    } = useModalFilter();
+        homeModalCurrencyFilterSelect,
+        homeModalCategoryFilterSelect,
+        homeModalCategoryTypeFilterSelect,
+        setHomeModalCategoryTypeFilterSelect,
+        setHomeModalCurrencyFilterSelect,
+        setHomeModalCategoryFilterSelect,
+    } = useHomeModalFilter();
 
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
@@ -86,22 +85,13 @@ const FilterModalHome: React.FC<FilterModalProps> = ({ isOpen, onClose }) => {
                         wrap={'wrap'}
                         gap="16px"
                     >
-                        <CategoryModalButton
-                            categoryType="home_light"
-                            categoryName="Legendary Light Design"
-                        />
-                        <CategoryModalButton
-                            categoryType="gadgets"
-                            categoryName="Dauntless"
-                        />
-                        <CategoryModalButton
-                            categoryType="clothes"
-                            categoryName="Medusa Merch"
-                        />
-                        <CategoryModalButton
-                            categoryType="games"
-                            categoryName="Echo Rift"
-                        />
+                        {vendors.map((vendor: any, index) => (
+                            <CategoryModalButton
+                                key={index}
+                                categoryType="clothes"
+                                categoryName={vendor.vendorName}
+                            />
+                        ))}
                     </Flex>
                     <Text
                         mt="1.5rem"
@@ -180,11 +170,9 @@ const FilterModalHome: React.FC<FilterModalProps> = ({ isOpen, onClose }) => {
                         color={'white'}
                         backgroundColor={'transparent'}
                         onClick={() => {
-                            setReviewFilterSelect(null);
-                            setCurrencyFilterSelect(null);
-                            setCategoryFilterSelect(null);
-                            setCategoryTypeFilterSelect(null);
-                            onClose();
+                            setHomeModalCategoryTypeFilterSelect(null),
+                                setHomeModalCurrencyFilterSelect(null),
+                                setHomeModalCategoryFilterSelect(null);
                         }}
                         mr="auto"
                     >
@@ -192,36 +180,40 @@ const FilterModalHome: React.FC<FilterModalProps> = ({ isOpen, onClose }) => {
                     </Button>
                     <Button
                         onClick={() => {
-                            if (modalCurrencyFilterSelect) {
-                                setCurrencySelect(modalCurrencyFilterSelect);
+                            if (homeModalCurrencyFilterSelect) {
+                                setCurrencySelect(
+                                    homeModalCurrencyFilterSelect
+                                );
                             }
                             if (reviewFilterSelect) {
                                 setReviewStarsSelect(reviewFilterSelect);
                             }
-                            if (modalCategoryFilterSelect) {
-                                setCategorySelect(modalCategoryFilterSelect);
+                            if (homeModalCategoryFilterSelect) {
+                                setCategorySelect(
+                                    homeModalCategoryFilterSelect
+                                );
                                 setCategoryTypeSelect(
-                                    modalCategoryTypeFilterSelect
+                                    homeModalCategoryTypeFilterSelect
                                 );
                             }
-                            setModalCurrencyFilterSelect(null);
-                            setModalCategoryFilterSelect(null);
-                            setModalCategoryTypeFilterSelect(null);
+                            setHomeModalCurrencyFilterSelect(null);
+                            setHomeModalCategoryFilterSelect(null);
+                            setHomeModalCategoryTypeFilterSelect(null);
                             onClose();
                         }}
                         fontSize={'16px'}
                         fontWeight={'400'}
-                        // leftIcon={
-                        //     <Image
-                        //         style={{
-                        //             width: '16px',
-                        //             height: '16px',
-                        //             alignSelf: 'center',
-                        //         }}
-                        //         src={FilterIcon}
-                        //         alt="mobile filter"
-                        //     />
-                        // }
+                        leftIcon={
+                            <Image
+                                style={{
+                                    width: '16px',
+                                    height: '16px',
+                                    alignSelf: 'center',
+                                }}
+                                src={FilterIcon}
+                                alt="mobile filter"
+                            />
+                        }
                         backgroundColor={'primary.indigo.900'}
                         width={'100%'}
                         maxW={'155px'}

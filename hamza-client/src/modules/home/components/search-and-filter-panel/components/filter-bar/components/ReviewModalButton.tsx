@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import { Text, Flex } from '@chakra-ui/react';
 import ReviewStar from '../../../../../../../../public/images/products/review-star.svg';
-import useSideFilter from '@store/store-page/side-filter';
+import useHomeModalFilter from '@store/home-page/home-filter/home-filter';
 
 // Define the props type with TypeScript
 interface ReviewButtonProps {
@@ -11,14 +11,16 @@ interface ReviewButtonProps {
 }
 
 const ReviewModalButton: React.FC<ReviewButtonProps> = ({ title, value }) => {
-    const { reviewFilterSelect, setReviewFilterSelect } = useSideFilter();
-
+    const { homeModalReviewFilterSelect, setHomeModalReviewFilterSelect } =
+        useHomeModalFilter();
     return (
         <Flex>
             <Flex
-                onClick={() => setReviewFilterSelect(value)}
+                onClick={() => setHomeModalReviewFilterSelect(value)}
                 backgroundColor={
-                    reviewFilterSelect === title ? 'white' : 'transparent'
+                    homeModalReviewFilterSelect === title
+                        ? 'white'
+                        : 'transparent'
                 }
                 borderColor={'secondary.davy.900'}
                 display={'flex'}
@@ -30,7 +32,9 @@ const ReviewModalButton: React.FC<ReviewButtonProps> = ({ title, value }) => {
                 height={'42px'}
                 width={{ base: '125px', md: '154px' }}
                 style={{ padding: '10px 24px', cursor: 'pointer' }}
-                color={reviewFilterSelect === title ? 'black' : 'white'}
+                color={
+                    homeModalReviewFilterSelect === title ? 'black' : 'white'
+                }
                 transition="background 0.1s ease-in-out, color 0.1s ease-in-out"
                 _hover={{
                     background: 'white',
