@@ -4,6 +4,7 @@ import { formatAmount } from '@lib/util/prices';
 
 import { paymentInfoMap } from '@lib/constants';
 import Divider from '@modules/common/components/divider';
+import { formatCryptoPrice } from '@lib/util/get-product-price';
 
 type PaymentDetailsProps = {
     order: Order;
@@ -20,7 +21,7 @@ const PaymentDetails = ({ order }: PaymentDetailsProps) => {
                 {payment && (
                     <div className="flex items-start gap-x-1 w-full">
                         <div className="flex flex-col w-1/3">
-                            <Text className="txt-medium-plus text-ui-fg-base mb-1">
+                            <Text className="txt-medium-plus text-ui-fg-base mb-1 text-black">
                                 Payment method
                             </Text>
                             <Text className="txt-medium text-ui-fg-subtle">
@@ -28,7 +29,7 @@ const PaymentDetails = ({ order }: PaymentDetailsProps) => {
                             </Text>
                         </div>
                         <div className="flex flex-col w-2/3">
-                            <Text className="txt-medium-plus text-ui-fg-base mb-1">
+                            <Text className="txt-medium-plus text-ui-fg-base mb-1 text-black">
                                 Payment details
                             </Text>
                             <div className="flex gap-2 txt-medium text-ui-fg-subtle items-center">
@@ -38,12 +39,7 @@ const PaymentDetails = ({ order }: PaymentDetailsProps) => {
                                 <Text>
                                     {payment.data.card_last4
                                         ? `**** **** **** ${payment.data.card_last4}`
-                                        : `${formatAmount({
-                                              amount: payment.amount,
-                                              region: order.region,
-                                              includeTaxes: false,
-                                              currency_code: '',
-                                          })} paid at ${new Date(payment.created_at).toString()}`}
+                                        : `${formatCryptoPrice(payment.amount, order.currency_code)} ${order.currency_code.toUpperCase()} paid at ${new Date(payment.created_at).toString()}`}
                                 </Text>
                             </div>
                         </div>
