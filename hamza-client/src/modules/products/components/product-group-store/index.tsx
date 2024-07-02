@@ -101,7 +101,7 @@ const ProductCardGroup = ({ vendorName, filterByRating, category }: Props) => {
     };
 
     return (
-        <Box maxW={'941px'} width="100%" height="100%" ml="1rem">
+        <Box maxW={'941px'} width="100%" height="100%" mx="1rem">
             <StoreFilterDisplay />
             <Grid
                 mt={{ base: '0px', md: '3rem' }}
