@@ -16,7 +16,7 @@ import { LineItemService } from '@medusajs/medusa';
 import { Order } from '../models/order';
 import { Payment } from '../models/payment';
 import { Lifetime } from 'awilix';
-import { In } from 'typeorm';
+import { In, Not } from 'typeorm';
 
 type InjectDependencies = {
     idempotencyKeyService: IdempotencyKeyService;
@@ -295,7 +295,7 @@ export default class OrderService extends MedusaOrderService {
     async completeOrderTemplate(cartId: string) {
         console.log('Cart ID', cartId);
         const orders = (await this.orderRepository_.find({
-            where: { cart_id: cartId },
+            where: { cart_id: cartId, status: Not(OrderStatus.ARCHIVED) },
             relations: ['cart.items.variant.product', 'store.owner'],
         })) as Order[];
         console.log(orders);
@@ -333,7 +333,10 @@ export default class OrderService extends MedusaOrderService {
         customerId: string
     ): Promise<{ orders: any[]; uniqueCartIds: string[]; cartCount: number }> {
         const orders = await this.orderRepository_.find({
-            where: { customer_id: customerId },
+            where: {
+                customer_id: customerId,
+                status: Not(OrderStatus.ARCHIVED),
+            },
             select: ['id', 'cart_id'], // Select id and cart_id
             relations: ['cart.items', 'cart', 'cart.items.variant.product'],
         });
