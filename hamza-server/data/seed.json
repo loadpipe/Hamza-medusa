@@ -1,6 +1,12 @@
 {
     "store": {
-        "currencies": ["eur", "usd", "eth", "usdc", "usdt"],
+        "currencies": [
+            "eur",
+            "usd",
+            "eth",
+            "usdc",
+            "usdt"
+        ],
         "default_currency_code": "eth"
     },
     "users": [
@@ -17,18 +23,37 @@
             "name": "EU",
             "currency_code": "eth",
             "tax_rate": 0,
-            "payment_providers": ["crypto"],
-            "fulfillment_providers": ["manual"],
-            "countries": ["gb", "de", "dk", "se", "fr", "es", "it"]
+            "payment_providers": [
+                "crypto"
+            ],
+            "fulfillment_providers": [
+                "manual"
+            ],
+            "countries": [
+                "gb",
+                "de",
+                "dk",
+                "se",
+                "fr",
+                "es",
+                "it"
+            ]
         },
         {
             "id": "test-region-na",
             "name": "NA",
             "currency_code": "eth",
             "tax_rate": 0,
-            "payment_providers": ["crypto"],
-            "fulfillment_providers": ["manual"],
-            "countries": ["us", "ca"]
+            "payment_providers": [
+                "crypto"
+            ],
+            "fulfillment_providers": [
+                "manual"
+            ],
+            "countries": [
+                "us",
+                "ca"
+            ]
         }
     ],
     "shipping_options": [
@@ -82,7 +107,7 @@
                 "id": "manual-fulfillment"
             },
             "price_type": "flat_rate",
-            "amount": 800
+            "amount": 30000
         },
         {
             "name": "FakeEx Express",
@@ -92,7 +117,7 @@
                 "id": "manual-fulfillment"
             },
             "price_type": "flat_rate",
-            "amount": 1200
+            "amount": 32000
         },
         {
             "name": "FakeEx Return",
@@ -103,7 +128,7 @@
             },
             "price_type": "flat_rate",
             "is_return": true,
-            "amount": 800
+            "amount": 31000
         },
         {
             "name": "I want to return it myself",
@@ -183,7 +208,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -236,7 +263,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -289,7 +318,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -342,7 +373,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -395,7 +428,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -448,7 +483,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -491,11 +528,16 @@
             "handle": "headphones",
             "is_giftcard": false,
             "weight": 250,
-            "images": ["https://images.hamza.biz/headphones.webp"],
+            "images": [
+                "https://images.hamza.biz/headphones.webp"
+            ],
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black", "Silver"]
+                    "values": [
+                        "Black",
+                        "Silver"
+                    ]
                 }
             ],
             "variants": [
@@ -538,11 +580,16 @@
             "handle": "headset_future",
             "is_giftcard": false,
             "weight": 300,
-            "images": ["https://images.hamza.biz/dalle_black_vr.webp"],
+            "images": [
+                "https://images.hamza.biz/dalle_black_vr.webp"
+            ],
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Sleek Black", "Space Gray"]
+                    "values": [
+                        "Sleek Black",
+                        "Space Gray"
+                    ]
                 }
             ],
             "variants": [
@@ -585,11 +632,16 @@
             "handle": "headset_audio",
             "is_giftcard": false,
             "weight": 260,
-            "images": ["https://images.hamza.biz/dalle_vr.webp"],
+            "images": [
+                "https://images.hamza.biz/dalle_vr.webp"
+            ],
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Robot White", "Electronic Blue"]
+                    "values": [
+                        "Robot White",
+                        "Electronic Blue"
+                    ]
                 }
             ],
             "variants": [
@@ -632,11 +684,16 @@
             "handle": "headset_sleek",
             "is_giftcard": false,
             "weight": 290,
-            "images": ["https://images.hamza.biz/dalle_vr_2.webp"],
+            "images": [
+                "https://images.hamza.biz/dalle_vr_2.webp"
+            ],
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Racing Red", "Midnight Black"]
+                    "values": [
+                        "Racing Red",
+                        "Midnight Black"
+                    ]
                 }
             ],
             "variants": [
@@ -679,11 +736,16 @@
             "handle": "headset_aural",
             "is_giftcard": false,
             "weight": 275,
-            "images": ["https://images.hamza.biz/dalle_vr_headset.webp"],
+            "images": [
+                "https://images.hamza.biz/dalle_vr_headset.webp"
+            ],
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Galactic Black", "Stellar White"]
+                    "values": [
+                        "Galactic Black",
+                        "Stellar White"
+                    ]
                 }
             ],
             "variants": [
@@ -726,11 +788,16 @@
             "handle": "headset_vision",
             "is_giftcard": false,
             "weight": 310,
-            "images": ["https://images.hamza.biz/dalle_vr_headset3.webp"],
+            "images": [
+                "https://images.hamza.biz/dalle_vr_headset3.webp"
+            ],
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Visionary Black", "Innovator Ivory"]
+                    "values": [
+                        "Visionary Black",
+                        "Innovator Ivory"
+                    ]
                 }
             ],
             "variants": [
@@ -773,11 +840,16 @@
             "handle": "headset_echo",
             "is_giftcard": false,
             "weight": 265,
-            "images": ["https://images.hamza.biz/vr_3.webp"],
+            "images": [
+                "https://images.hamza.biz/vr_3.webp"
+            ],
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Eclipse Black", "Solar White"]
+                    "values": [
+                        "Eclipse Black",
+                        "Solar White"
+                    ]
                 }
             ],
             "variants": [
@@ -820,11 +892,16 @@
             "handle": "headset_nova",
             "is_giftcard": false,
             "weight": 285,
-            "images": ["https://images.hamza.biz/sony_wh1000xm4.jpeg"],
+            "images": [
+                "https://images.hamza.biz/sony_wh1000xm4.jpeg"
+            ],
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Nebula Navy", "Cosmic Chrome"]
+                    "values": [
+                        "Nebula Navy",
+                        "Cosmic Chrome"
+                    ]
                 }
             ],
             "variants": [
@@ -876,11 +953,19 @@
             "options": [
                 {
                     "title": "Size",
-                    "values": ["S", "M", "L", "XL"]
+                    "values": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                    ]
                 },
                 {
                     "title": "Color",
-                    "values": ["Black", "White"]
+                    "values": [
+                        "Black",
+                        "White"
+                    ]
                 }
             ],
             "variants": [
@@ -1122,7 +1207,12 @@
             "options": [
                 {
                     "title": "Size",
-                    "values": ["S", "M", "L", "XL"]
+                    "values": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                    ]
                 }
             ],
             "variants": [
@@ -1244,7 +1334,12 @@
             "options": [
                 {
                     "title": "Size",
-                    "values": ["S", "M", "L", "XL"]
+                    "values": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                    ]
                 }
             ],
             "variants": [
@@ -1366,7 +1461,12 @@
             "options": [
                 {
                     "title": "Size",
-                    "values": ["S", "M", "L", "XL"]
+                    "values": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                    ]
                 }
             ],
             "variants": [
@@ -1491,7 +1591,12 @@
             "options": [
                 {
                     "title": "Size",
-                    "values": ["S", "M", "L", "XL"]
+                    "values": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                    ]
                 }
             ],
             "variants": [
@@ -1616,7 +1721,12 @@
             "options": [
                 {
                     "title": "Size",
-                    "values": ["S", "M", "L", "XL"]
+                    "values": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                    ]
                 }
             ],
             "variants": [
@@ -1740,7 +1850,9 @@
             "options": [
                 {
                     "title": "Size",
-                    "values": ["One Size"]
+                    "values": [
+                        "One Size"
+                    ]
                 }
             ],
             "variants": [
@@ -1793,7 +1905,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Silver"]
+                    "values": [
+                        "Silver"
+                    ]
                 }
             ],
             "variants": [
@@ -1846,7 +1960,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Silver"]
+                    "values": [
+                        "Silver"
+                    ]
                 }
             ],
             "variants": [
@@ -1899,7 +2015,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["White"]
+                    "values": [
+                        "White"
+                    ]
                 }
             ],
             "variants": [
@@ -1952,7 +2070,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Silver"]
+                    "values": [
+                        "Silver"
+                    ]
                 }
             ],
             "variants": [
@@ -2005,7 +2125,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["White"]
+                    "values": [
+                        "White"
+                    ]
                 }
             ],
             "variants": [
@@ -2058,7 +2180,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -2111,7 +2235,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Silver"]
+                    "values": [
+                        "Silver"
+                    ]
                 }
             ],
             "variants": [
@@ -2164,7 +2290,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["White"]
+                    "values": [
+                        "White"
+                    ]
                 }
             ],
             "variants": [
@@ -2217,7 +2345,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["White"]
+                    "values": [
+                        "White"
+                    ]
                 }
             ],
             "variants": [
@@ -2270,7 +2400,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Red"]
+                    "values": [
+                        "Red"
+                    ]
                 }
             ],
             "variants": [
@@ -2322,7 +2454,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Brown"]
+                    "values": [
+                        "Brown"
+                    ]
                 }
             ],
             "variants": [
@@ -2375,7 +2509,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Green"]
+                    "values": [
+                        "Green"
+                    ]
                 }
             ],
             "variants": [
@@ -2428,7 +2564,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Silver"]
+                    "values": [
+                        "Silver"
+                    ]
                 }
             ],
             "variants": [
@@ -2481,7 +2619,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Red"]
+                    "values": [
+                        "Red"
+                    ]
                 }
             ],
             "variants": [
@@ -2534,7 +2674,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Red"]
+                    "values": [
+                        "Red"
+                    ]
                 }
             ],
             "variants": [
@@ -2587,7 +2729,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Silver"]
+                    "values": [
+                        "Silver"
+                    ]
                 }
             ],
             "variants": [
@@ -2640,7 +2784,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["White"]
+                    "values": [
+                        "White"
+                    ]
                 }
             ],
             "variants": [
@@ -2693,7 +2839,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -2746,7 +2894,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -2799,7 +2949,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -2852,7 +3004,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -2904,7 +3058,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -2956,7 +3112,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -3008,7 +3166,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -3061,7 +3221,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -3114,7 +3276,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Grey"]
+                    "values": [
+                        "Grey"
+                    ]
                 }
             ],
             "variants": [
@@ -3167,7 +3331,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -3220,7 +3386,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -3273,7 +3441,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -3326,7 +3496,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -3379,7 +3551,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -3431,7 +3605,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -3484,7 +3660,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -3537,7 +3715,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -3590,7 +3770,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
