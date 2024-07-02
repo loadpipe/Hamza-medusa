@@ -30,12 +30,17 @@ const StoreTemplate = () => {
     }, [reviewFilterSelect]);
 
     return (
-        <Flex width={'100%'} flexDirection={'column'} my="2rem">
+        <Flex
+            width={'100%'}
+            flexDirection={'column'}
+            justifyContent={'center'}
+            alignItems={'center'}
+            my="2rem"
+        >
             <Flex
+                maxWidth={'1280px'}
                 width={'100%'}
                 flexDirection={{ base: 'column', md: 'row' }}
-                maxWidth={'1280px'}
-                mx="auto"
             >
                 <SideMenu />
                 <MobileFilter />
