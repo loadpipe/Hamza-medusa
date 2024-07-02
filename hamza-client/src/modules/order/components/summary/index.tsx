@@ -84,7 +84,12 @@ const Summary: React.FC<{ cart_id: string }> = ({ cart_id }) => {
                     <Tweet productHandle={product.handle} isPurchased={true} />
                     <Box mb={4}>
                         <Heading size="md">{product.title}</Heading>
-                        <Text mt={2}>{product.description}</Text>
+                        <div
+                            className="mt-2"
+                            dangerouslySetInnerHTML={{
+                                __html: product.description,
+                            }}
+                        ></div>
                     </Box>
                     <Stack spacing={2}>
                         <Text>
