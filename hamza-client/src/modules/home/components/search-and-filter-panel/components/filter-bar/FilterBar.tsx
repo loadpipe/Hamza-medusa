@@ -6,9 +6,10 @@ import vendors from '../../data/data';
 import FilterButton from './components/FilterButton';
 import { CgChevronRight } from 'react-icons/cg';
 import FilterModalHome from './components/FilterModal';
+import useHomeProductsPage from '@store/home-page/product-layout/product-layout';
 
 const FilterBar = () => {
-    const { categorySelect } = useStorePage();
+    const { categorySelect } = useHomeProductsPage();
     const [vendorName, setVendorName] = useState('Legendary Light Design');
     const [isClient, setIsClient] = useState(false);
     const [startIdx, setStartIdx] = useState(0); // State to keep track of the starting index of visible vendors

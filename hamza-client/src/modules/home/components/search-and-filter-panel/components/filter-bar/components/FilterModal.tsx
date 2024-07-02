@@ -22,7 +22,8 @@ import CurrencyModalButton from './CurrencyModalButton';
 import useStorePage from '@store/store-page/store-page';
 import useSideFilter from '@store/store-page/side-filter';
 import useModalFilter from '@store/store-page/filter-modal';
-import useHomeModalFilter from '@store/home-filter/home-filter';
+import useHomeProductsPage from '@store/home-page/product-layout/product-layout';
+import useHomeModalFilter from '@store/home-page/home-filter/home-filter';
 import RangeSliderModal from '@modules/store-v2/component/mobile-fitler/components/range-slider-modal';
 
 interface FilterModalProps {
@@ -36,7 +37,7 @@ const FilterModalHome: React.FC<FilterModalProps> = ({ isOpen, onClose }) => {
         setReviewStarsSelect,
         setCategorySelect,
         setCategoryTypeSelect,
-    } = useStorePage();
+    } = useHomeProductsPage();
     const {
         reviewFilterSelect,
         setReviewFilterSelect,

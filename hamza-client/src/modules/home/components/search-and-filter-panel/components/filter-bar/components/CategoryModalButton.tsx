@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, Flex } from '@chakra-ui/react';
 import Image from 'next/image';
 import useModalFilter from '@store/store-page/filter-modal';
-import useHomeModalFilter from '@store/home-filter/home-filter';
+import useHomeModalFilter from '@store/home-page/home-filter/home-filter';
 import categoryIcons from '../data/cat-icons';
 
 interface CategoryButtonProps {

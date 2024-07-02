@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Text, Flex } from '@chakra-ui/react';
 import currencyIcons from '../data/crypto-currency-icons';
 import useModalFilter from '@store/store-page/filter-modal';
-import useHomeModalFilter from '@store/home-filter/home-filter';
+import useHomeModalFilter from '@store/home-page/home-filter/home-filter';
 interface CurrencyButtonProps {
     currencyName: 'ETH' | 'USDC' | 'USDT';
 }
