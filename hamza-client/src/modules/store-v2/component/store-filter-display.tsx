@@ -51,7 +51,7 @@ const StoreFilterDisplay = () => {
                 {/* top button filter */}
 
                 <FilterBarStore />
-                <Text fontSize={'18px'} color="primary.indigo.900">
+                <Text fontSize={'18px'} color="primary.indigo.900" mt="4rem">
                     Filters Applied
                 </Text>
                 <FilterTags />
