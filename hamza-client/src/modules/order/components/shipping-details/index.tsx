@@ -63,9 +63,8 @@ const ShippingDetails = ({ order }: ShippingDetailsProps) => {
                                 : 0,
                             region: order.region,
                             includeTaxes: false,
-                        })
-                            .replace(/,/g, '')
-                            .replace(/\./g, ',')}
+                            currency_code: '',
+                        })}
                         )
                     </Text>
                 </div>

@@ -14,6 +14,8 @@ import ErrorMessage from '@modules/checkout/components/error-message';
 import { setShippingMethod } from '@modules/checkout/actions';
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { formatCryptoPrice } from '@lib/util/get-product-price';
+import { useCustomerAuthStore } from '@store/customer-auth/customer-auth';
 
 type ShippingProps = {
     cart: Omit<Cart, 'refundable_amount' | 'refunded_total'>;
@@ -30,11 +32,15 @@ const Shipping: React.FC<ShippingProps> = ({
     const searchParams = useSearchParams();
     const router = useRouter();
     const pathname = usePathname();
+    const { authData, preferred_currency_code } = useCustomerAuthStore();
 
     const isOpen = searchParams.get('step') === 'delivery';
+    const cartId = isOpen ? searchParams.get('cart') : cart.id;
 
     const handleEdit = () => {
-        router.push(pathname + '?step=delivery', { scroll: false });
+        router.push(pathname + `?step=delivery&cart=${cart.id}`, {
+            scroll: false,
+        });
     };
 
     const handleSubmit = () => {
@@ -114,7 +120,7 @@ const Shipping: React.FC<ShippingProps> = ({
                                             key={option.id}
                                             value={option.id}
                                             className={clx(
-                                                'flex items-center justify-between text-small-regular cursor-pointer py-4 border rounded-rounded px-8 mb-2 hover:shadow-borders-interactive-with-active',
+                                                'flex items-center justify-between text-white text-regular cursor-pointer py-4 border rounded-rounded px-8 mb-2 hover:shadow-borders-interactive-with-active',
                                                 {
                                                     'border-ui-border-interactive':
                                                         option.id ===
@@ -126,6 +132,7 @@ const Shipping: React.FC<ShippingProps> = ({
                                                             : ''),
                                                 }
                                             )}
+                                            style={{ color: 'white' }} // Inline style for testing
                                         >
                                             <div className="flex items-center gap-x-4">
                                                 <Radio
@@ -144,11 +151,11 @@ const Shipping: React.FC<ShippingProps> = ({
                                                 </span>
                                             </div>
                                             <span className="justify-self-end text-ui-fg-base">
-                                                {formatAmount({
-                                                    amount: option.amount!,
-                                                    region: cart?.region,
-                                                    includeTaxes: false,
-                                                })}
+                                                {formatCryptoPrice(
+                                                    option.amount!,
+                                                    preferred_currency_code!
+                                                ).toString()}{' '}
+                                                {preferred_currency_code?.toUpperCase()}
                                             </span>
                                         </RadioGroup.Option>
                                     );
@@ -165,7 +172,7 @@ const Shipping: React.FC<ShippingProps> = ({
 
                     <Button
                         size="large"
-                        className="mt-6"
+                        className="mt-6 bg-teal-500 text-white py-3 px-6 rounded text-base"
                         onClick={handleSubmit}
                         isLoading={isLoading}
                         disabled={
@@ -184,7 +191,7 @@ const Shipping: React.FC<ShippingProps> = ({
                                 <Text className="txt-medium-plus text-ui-fg-base mb-1">
                                     Method
                                 </Text>
-                                <Text className="txt-medium text-ui-fg-subtle">
+                                <Text className="txt-medium text-white">
                                     {cart.shipping_methods?.length
                                         ? cart.shipping_methods[0]
                                               .shipping_option.name
@@ -196,9 +203,8 @@ const Shipping: React.FC<ShippingProps> = ({
                                             : 0,
                                         region: cart.region,
                                         includeTaxes: false,
-                                    })
-                                        .replace(/,/g, '')
-                                        .replace(/\./g, ',')}
+                                        currency_code: '',
+                                    })}
                                     )
                                 </Text>
                             </div>

@@ -38,6 +38,7 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
                 return `- ${formatAmount({
                     amount: discounts[0].rule.value,
                     region: region,
+                    currency_code: '',
                 })}`;
 
             default:
@@ -77,7 +78,8 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
                                         region: region,
                                         amount: gc.balance,
                                         includeTaxes: false,
-                                    })}
+                                        currency_code: '',
+                                    }).toString()}
                                 </Text>
                                 <button
                                     className="flex items-center gap-x-2 !background-transparent !border-none"

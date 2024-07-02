@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Select } from '@chakra-ui/react';
 import { Customer } from '@medusajs/medusa';
 import axios from 'axios';
+import { useCustomerAuthStore } from '@store/customer-auth/customer-auth';
 
 type MyInformationProps = {
     customer: Omit<Customer, 'password_hash'>;
@@ -13,17 +14,22 @@ const BACKEND_URL = process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL;
 
 const ProfileCurrency: React.FC<MyInformationProps> = ({ customer }) => {
     // State to store the current currency
-    const [currency, setCurrency] = useState('usdc');
+    const { preferred_currency_code, setCustomerPreferredCurrency } =
+        useCustomerAuthStore();
 
     // Simulate updating the currency in customer profile
     const updateCurrency = async (newCurrency: string) => {
         console.log(`Currency updated to ${newCurrency}`);
         console.log(`Customer is ${customer.id}`);
         try {
-            await axios.post('http://localhost:9000/custom/update-currency', {
-                customer_id: customer.id,
-                preferred_currency: newCurrency,
-            });
+            await axios.post(
+                `${process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL || 'http://localhost:9000'}/custom/update-currency`,
+                {
+                    customer_id: customer.id,
+                    preferred_currency: newCurrency,
+                }
+            );
+            setCustomerPreferredCurrency(newCurrency);
         } catch (error) {
             console.error('Error updating currency', error);
         }
@@ -32,9 +38,9 @@ const ProfileCurrency: React.FC<MyInformationProps> = ({ customer }) => {
     };
 
     // Handler for currency change from dropdown
-    const handleCurrencyChange = (event) => {
+    const handleCurrencyChange = (event: any) => {
         const newCurrency = event.target.value;
-        setCurrency(newCurrency);
+        setCustomerPreferredCurrency(newCurrency);
         updateCurrency(newCurrency);
     };
 
@@ -43,8 +49,10 @@ const ProfileCurrency: React.FC<MyInformationProps> = ({ customer }) => {
             <label htmlFor="currency-select">Choose a currency:</label>
             <Select
                 id="currency-select"
-                value={currency}
+                value={preferred_currency_code!}
                 onChange={handleCurrencyChange}
+                bg="gray.800"
+                color="white"
             >
                 <option value="usdc">USDC</option>
                 <option value="usdt">USDT</option>

@@ -51,6 +51,7 @@ const ShippingAddress = ({
     );
 
     useEffect(() => {
+        console.log(cart);
         setFormData({
             'shipping_address.first_name':
                 cart?.shipping_address?.first_name || '',
@@ -68,7 +69,7 @@ const ShippingAddress = ({
             email: cart?.email || '',
             'shipping_address.phone': cart?.shipping_address?.phone || '',
         });
-    }, [cart?.shipping_address, cart?.email]);
+    }, [cart]);
 
     const handleChange = (
         e: React.ChangeEvent<
@@ -173,9 +174,8 @@ const ShippingAddress = ({
                     type="email"
                     title="Enter a valid email address."
                     autoComplete="email"
-                    value={formData.email}
+                    value={formData.email.includes('evm') ? '' : formData.email}
                     onChange={handleChange}
-                    required
                 />
                 <Input
                     label="Phone"

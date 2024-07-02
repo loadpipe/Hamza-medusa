@@ -1,4 +1,5 @@
 import { TransactionBaseService } from '@medusajs/medusa/dist/interfaces';
+import { Logger } from '@medusajs/medusa';
 import { MedusaError } from 'medusa-core-utils';
 import { Lifetime } from 'awilix';
 import { WishlistItem } from '../models/wishlist-item';
@@ -6,9 +7,11 @@ import { Wishlist } from '../models/wishlist';
 
 class WishlistService extends TransactionBaseService {
     static LIFE_TIME = Lifetime.SCOPED;
+    protected readonly logger: Logger;
 
     constructor(container) {
         super(container);
+        this.logger = container.logger;
     }
 
     async create(customer_id) {
@@ -32,7 +35,7 @@ class WishlistService extends TransactionBaseService {
 
             if (existingWishlist) {
                 // Wishlist already exists, return it
-                console.log('Wishlist already exists for this customer');
+                this.logger.debug('Wishlist already exists for this customer');
                 return existingWishlist;
             }
 

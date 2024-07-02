@@ -33,9 +33,13 @@ const Addresses = ({
     const pathname = usePathname();
     const params = useParams();
 
-    const countryCode = params.countryCode as string;
+    const countryCode = process.env.NEXT_PUBLIC_FORCE_US_COUNTRY
+        ? 'us'
+        : (params.countryCode as string);
 
-    const isOpen = searchParams.get('step') === 'address';
+    const isOpen =
+        (searchParams.get('step') && searchParams.get('step') === 'address') ||
+        !searchParams.get('step');
 
     const { state: sameAsSBilling, toggle: toggleSameAsBilling } =
         useToggleState(
@@ -84,113 +88,51 @@ const Addresses = ({
                             onChange={toggleSameAsBilling}
                             cart={cart}
                         />
-
-                        {/* {!sameAsSBilling && (
-                            <div>
-                                <Heading
-                                    level="h2"
-                                    className="text-3xl-regular gap-x-4 pb-6 pt-8"
-                                >
-                                    Billing address
-                                </Heading>
-
-                                <BillingAddress
-                                    cart={cart}
-                                    countryCode={countryCode}
-                                />
-                            </div>
-                        )} */}
-                        <SubmitButton className="mt-6">
+                        <SubmitButton className="mt-6 bg-teal-500 text-white py-3 px-6 rounded text-base">
                             Continue to delivery
                         </SubmitButton>
+
                         <ErrorMessage error={message} />
                     </div>
                 </form>
             ) : (
-                <div>
+                <div className="bg-white text-black p-4 rounded-md shadow-md">
                     <div className="text-small-regular">
                         {cart && cart.shipping_address ? (
-                            <div className="flex items-start gap-x-8">
-                                <div className="flex items-start gap-x-1 w-full">
-                                    <div className="flex flex-col w-1/3">
-                                        <Text className="txt-medium-plus text-ui-fg-base mb-1">
+                            <div className="flex flex-col md:flex-row items-start gap-x-8">
+                                <div className="flex flex-col md:flex-row items-start gap-x-1 w-full">
+                                    <div className="flex flex-col w-full md:w-1/3 mb-4 md:mb-0">
+                                        <Text className="text-medium-plus text-black mb-1">
                                             Shipping Address
                                         </Text>
-                                        <Text className="txt-medium text-ui-fg-subtle">
+                                        <Text className="text-medium text-gray-800">
                                             {cart.shipping_address.first_name}{' '}
                                             {cart.shipping_address.last_name}
                                         </Text>
-                                        <Text className="txt-medium text-ui-fg-subtle">
+                                        <Text className="text-medium text-gray-800">
                                             {cart.shipping_address.address_1}{' '}
                                             {cart.shipping_address.address_2}
                                         </Text>
-                                        <Text className="txt-medium text-ui-fg-subtle">
+                                        <Text className="text-medium text-gray-800">
                                             {cart.shipping_address.postal_code},{' '}
                                             {cart.shipping_address.city}
                                         </Text>
-                                        <Text className="txt-medium text-ui-fg-subtle">
+                                        <Text className="text-medium text-gray-800">
                                             {cart.shipping_address.country_code?.toUpperCase()}
                                         </Text>
                                     </div>
 
-                                    <div className="flex flex-col w-1/3 ">
-                                        <Text className="txt-medium-plus text-ui-fg-base mb-1">
+                                    <div className="flex flex-col w-full md:w-1/3 mb-4 md:mb-0">
+                                        <Text className="text-medium-plus text-black mb-1">
                                             Contact
                                         </Text>
-                                        <Text className="txt-medium text-ui-fg-subtle">
+                                        <Text className="text-medium text-gray-800">
                                             {cart.shipping_address.phone}
                                         </Text>
-                                        <Text className="txt-medium text-ui-fg-subtle">
+                                        <Text className="text-medium text-gray-800">
                                             {cart.email}
                                         </Text>
                                     </div>
-
-                                    {/* <div className="flex flex-col w-1/3">
-                                        <Text className="txt-medium-plus text-ui-fg-base mb-1">
-                                            Billing Address
-                                        </Text>
-
-                                        {sameAsSBilling ? (
-                                            <Text className="txt-medium text-ui-fg-subtle">
-                                                Billing- and delivery address
-                                                are the same.
-                                            </Text>
-                                        ) : (
-                                            <>
-                                                <Text className="txt-medium text-ui-fg-subtle">
-                                                    {
-                                                        cart.billing_address
-                                                            .first_name
-                                                    }{' '}
-                                                    {
-                                                        cart.billing_address
-                                                            .last_name
-                                                    }
-                                                </Text>
-                                                <Text className="txt-medium text-ui-fg-subtle">
-                                                    {
-                                                        cart.billing_address
-                                                            .address_1
-                                                    }{' '}
-                                                    {
-                                                        cart.billing_address
-                                                            .address_2
-                                                    }
-                                                </Text>
-                                                <Text className="txt-medium text-ui-fg-subtle">
-                                                    {
-                                                        cart.billing_address
-                                                            .postal_code
-                                                    }
-                                                    ,{' '}
-                                                    {cart.billing_address.city}
-                                                </Text>
-                                                <Text className="txt-medium text-ui-fg-subtle">
-                                                    {cart.billing_address.country_code?.toUpperCase()}
-                                                </Text>
-                                            </>
-                                        )}
-                                    </div> */}
                                 </div>
                             </div>
                         ) : (
