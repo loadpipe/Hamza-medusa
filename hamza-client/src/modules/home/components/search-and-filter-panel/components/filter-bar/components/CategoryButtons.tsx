@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, Flex } from '@chakra-ui/react';
-import useStorePage from '@store/store-page/store-page';
+import useHomeProductsPage from '@store/home-page/product-layout/product-layout';
 import { FaTshirt } from 'react-icons/fa';
 
 interface CategoryButtonProps {
@@ -13,7 +13,7 @@ const CategoryButtons: React.FC<CategoryButtonProps> = ({
     categoryType,
 }) => {
     const { categorySelect, setCategorySelect, setCategoryTypeSelect } =
-        useStorePage();
+        useHomeProductsPage();
 
     return (
         <Flex
