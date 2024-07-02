@@ -63,6 +63,10 @@ const SideMenu = () => {
                 <Flex mt="1rem" flexDirection={'column'} gap="16px">
                     <CategoryButton
                         categoryType="home_light"
+                        categoryName="All"
+                    />
+                    <CategoryButton
+                        categoryType="home_light"
                         categoryName="Legendary Light Design"
                     />
                     <CategoryButton
