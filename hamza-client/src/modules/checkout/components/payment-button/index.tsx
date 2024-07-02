@@ -49,10 +49,10 @@ declare global {
 const PaymentButton: React.FC<PaymentButtonProps> = ({ cart }) => {
     const notReady =
         !cart ||
-            !cart.shipping_address ||
-            !cart.billing_address ||
-            !cart.email ||
-            cart.shipping_methods.length < 1
+        !cart.shipping_address ||
+        !cart.billing_address ||
+        !cart.email ||
+        cart.shipping_methods.length < 1
             ? true
             : false;
 
@@ -329,7 +329,7 @@ const CryptoPaymentButton = ({
             updateCart.mutate(
                 { context: {} },
                 {
-                    onSuccess: ({ }) => {
+                    onSuccess: ({}) => {
                         //this calls the CartCompletion routine
                         completeCart.mutate(void 0, {
                             onSuccess: async ({ data, type }) => {
@@ -346,7 +346,7 @@ const CryptoPaymentButton = ({
                                     await cancelOrderFromCart();
                                 }
                             },
-                            onError: async ({ }) => {
+                            onError: async ({}) => {
                                 setSubmitting(false);
                                 setErrorMessage('Checkout was not completed');
                                 await cancelOrderFromCart();
@@ -373,6 +373,7 @@ const CryptoPaymentButton = ({
                 disabled={notReady}
                 color="white"
                 onClick={handlePayment}
+                className="mt-6 bg-teal-500 text-white py-3 px-6 rounded text-base"
             >
                 Place Order: Crypto
             </Button>

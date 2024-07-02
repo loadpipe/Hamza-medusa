@@ -47,27 +47,46 @@ export default async function Footer() {
                     width={'100%'}
                 >
                     <Flex flexDir={'column'} color={'white'} gap={'8px'}>
-                        <Text className="text-base font-bold">
-                            Processing and Shipping
-                        </Text>
-                        <Text
-                            fontSize={{ base: '14px', md: '16px' }}
-                            className="text-base font-bold"
+                        <Text className="text-base font-bold">Site</Text>
+
+                        <Link href={'/'}>
+                            <Text
+                                fontSize={{ base: '14px', md: '16px' }}
+                                className="text-base font-bold"
+                            >
+                                Home
+                            </Text>
+                        </Link>
+
+                        <a href="https://blog.hamza.biz/about/" target="_blank">
+                            <Text
+                                fontSize={{ base: '14px', md: '16px' }}
+                                className="text-base font-bold"
+                            >
+                                About
+                            </Text>
+                        </a>
+
+                        <a href="https://blog.hamza.biz/blog/" target="_blank">
+                            <Text
+                                fontSize={{ base: '14px', md: '16px' }}
+                                className="text-base font-bold"
+                            >
+                                Blog
+                            </Text>
+                        </a>
+
+                        <a
+                            href="https://blog.hamza.biz/contact"
+                            target="_blank"
                         >
-                            Our Copyrights Policy
-                        </Text>
-                        <Text
-                            fontSize={{ base: '14px', md: '16px' }}
-                            className="text-base font-bold"
-                        >
-                            Our Return Policy
-                        </Text>
-                        <Text
-                            fontSize={{ base: '14px', md: '16px' }}
-                            className="text-base font-bold"
-                        >
-                            Catalog
-                        </Text>
+                            <Text
+                                fontSize={{ base: '14px', md: '16px' }}
+                                className="text-base font-bold"
+                            >
+                                Contact
+                            </Text>
+                        </a>
                     </Flex>
 
                     <Divider
@@ -76,50 +95,76 @@ export default async function Footer() {
                     />
 
                     <Flex flexDir={'column'} color={'white'} gap={'8px'}>
-                        <Text
-                            fontSize={{ base: '14px', md: '16px' }}
-                            className="text-base font-bold"
+                        <a
+                            href="https://blog.hamza.biz/affiliate/"
+                            target="_blank"
                         >
-                            CONTACT US
-                        </Text>
-                        <Text
-                            fontSize={{ base: '14px', md: '16px' }}
-                            className="text-base font-bold"
+                            <Text
+                                fontSize={{ base: '14px', md: '16px' }}
+                                className="text-base font-bold"
+                            >
+                                Affiliate
+                            </Text>
+                        </a>
+
+                        <a
+                            href="https://blog.hamza.biz/ambassador/"
+                            target="_blank"
                         >
-                            team@hamza.biz
-                        </Text>
+                            <Text
+                                fontSize={{ base: '14px', md: '16px' }}
+                                className="text-base font-bold"
+                            >
+                                Ambassador
+                            </Text>
+                        </a>
+
+                        <a
+                            href="https://blog.hamza.biz/careers/"
+                            target="_blank"
+                        >
+                            <Text
+                                fontSize={{ base: '14px', md: '16px' }}
+                                className="text-base font-bold"
+                            >
+                                Careers
+                            </Text>
+                        </a>
                     </Flex>
 
-                    <Divider
-                        display={{ base: 'block', md: 'none' }}
-                        my="2rem"
-                    />
-
                     <Flex flexDir={'column'} color={'white'} gap={'8px'}>
-                        <Text
-                            fontSize={{ base: '14px', md: '16px' }}
-                            className="text-base font-bold"
+                        <a
+                            href="https://blog.hamza.biz/merchant/"
+                            target="_blank"
                         >
-                            Articles
-                        </Text>
-                        <Text
-                            fontSize={{ base: '14px', md: '16px' }}
-                            className="text-base font-bold"
+                            <Text
+                                fontSize={{ base: '14px', md: '16px' }}
+                                className="text-base font-bold"
+                            >
+                                Merchant
+                            </Text>
+                        </a>
+
+                        <a href="https://support.hamza.biz/" target="_blank">
+                            <Text
+                                fontSize={{ base: '14px', md: '16px' }}
+                                className="text-base font-bold"
+                            >
+                                Knoweledge Base
+                            </Text>
+                        </a>
+
+                        <a
+                            href="https://support.hamza.biz/help/1568263160"
+                            target="_blank"
                         >
-                            Privacy Policy
-                        </Text>
-                        <Text
-                            fontSize={{ base: '14px', md: '16px' }}
-                            className="text-base font-bold"
-                        >
-                            Terms and Conditions
-                        </Text>
-                        <Text
-                            fontSize={{ base: '14px', md: '16px' }}
-                            className="text-base font-bold"
-                        >
-                            Certificate of Authenticity
-                        </Text>
+                            <Text
+                                fontSize={{ base: '14px', md: '16px' }}
+                                className="text-base font-bold"
+                            >
+                                Submit a Ticket
+                            </Text>
+                        </a>
                     </Flex>
                 </Flex>
 

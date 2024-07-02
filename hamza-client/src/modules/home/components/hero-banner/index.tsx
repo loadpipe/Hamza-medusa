@@ -45,53 +45,73 @@ const HeroBanner = () => {
                 style={{ opacity, transition: 'opacity 0.5s ease-out' }}
             >
                 <Link href="https://blog.hamza.biz/affiliate/" isExternal>
-                    <Text fontSize="lg" fontWeight="bold">
+                    <Text fontSize={{ base: 'md', md: 'lg' }} fontWeight="bold">
                         Become an affiliate
                     </Text>
                 </Link>
             </Flex>
             <SwitchNetwork enabled={false} />
             <Flex
-                px={6}
-                pt={8}
                 justifyContent={'center'}
                 alignItems={'center'}
                 flexDirection={'column'}
             >
-                <Text
-                    mb={{ sm: 3, md: '0' }}
-                    lineHeight={'62px'}
-                    color={'#FBFDFA'}
-                    style={{ fontSize: '32px' }}
+                <Flex
+                    gap={{ base: '0', md: '10px' }}
+                    justifyContent={'center'}
+                    alignItems={'center'}
+                    flexDirection={{ base: 'column', md: 'row' }}
                 >
-                    Buy & Sell Products Using{' '}
-                    <span style={{ color: '#7B61FF' }}>
-                        <b>Crypto</b>
-                    </span>{' '}
-                    as a Community
-                </Text>
+                    <Text
+                        color={'#FBFDFA'}
+                        fontWeight={'200'}
+                        fontSize={{ base: '24px', md: '32px' }}
+                    >
+                        Buy & Sell Products Using
+                    </Text>
+                    <Text
+                        mt={{ base: '-0.5rem', md: '0' }}
+                        fontWeight={'200'}
+                        color={'#FBFDFA'}
+                        fontSize={{ base: '24px', md: '32px' }}
+                    >
+                        <span style={{ color: '#7B61FF', fontWeight: '700' }}>
+                            <b>Crypto</b>
+                        </span>{' '}
+                        as a Community
+                    </Text>
+                </Flex>
                 <b />
                 <Flex
-                    gap="10px"
+                    mt={{ base: '0.5rem', md: '0' }}
+                    gap={{ base: '0', md: '10px' }}
+                    justifyContent={'center'}
+                    alignItems={'center'}
                     flexDirection={{
                         base: 'column',
                         md: 'row',
                     }}
-                    marginRight={{
-                        base: 'auto',
-                        md: '0',
-                    }}
                 >
-                    <Text color={'#FBFDFA'} style={{ fontSize: '20px' }}>
-                        By The <b>People</b>
-                    </Text>
-                    <Box
-                        marginRight={{ base: 'auto', md: '0' }}
-                        alignSelf="center"
+                    <Flex gap={'10px'}>
+                        <Text
+                            color={'#FBFDFA'}
+                            fontWeight={'400'}
+                            fontSize={{ base: '16px', md: '20px' }}
+                        >
+                            By The <b>People</b>
+                        </Text>
+                        <Box
+                            fontSize={{ base: '21px', md: '24px' }}
+                            alignSelf="center"
+                        >
+                            <FaArrowRightLong color="#FBFDFA" />
+                        </Box>
+                    </Flex>
+                    <Text
+                        color={'#FBFDFA'}
+                        fontWeight={'400'}
+                        fontSize={{ base: '16px', md: '20px' }}
                     >
-                        <FaArrowRightLong size={24} color="#FBFDFA" />
-                    </Box>
-                    <Text color={'#FBFDFA'} style={{ fontSize: '20px' }}>
                         For The <b>People</b> Using Blockchain Tech
                     </Text>
                 </Flex>

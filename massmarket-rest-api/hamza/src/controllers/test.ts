@@ -146,7 +146,8 @@ export const testController = {
                 */
 
                 return await RelayClientWrapper.createAndInitializeStore(
-                    `relay-beta.mass.market/v2`
+                    `relay-beta.mass.market/v2`,
+                    '0x65c1196c888ae6bb110077201346dfe426b220ce1d49a366102a2d85e7ad0e35'
                 );
             },
             201

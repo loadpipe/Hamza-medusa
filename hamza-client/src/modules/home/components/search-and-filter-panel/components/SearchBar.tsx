@@ -1,16 +1,8 @@
 import React from 'react';
-import {
-    Box,
-    Container,
-    Flex,
-    Input,
-    InputGroup,
-    InputRightElement,
-    Stack,
-} from '@chakra-ui/react';
+import { Flex, Input, InputGroup, InputRightElement } from '@chakra-ui/react';
 import { FaSearch } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import SearchModal from '@modules/search/templates/search-modal';
 
 const SearchBar = () => {
@@ -30,18 +22,29 @@ const SearchBar = () => {
     }, [pathname]);
 
     return (
-        <Box pt="8" px="6" display={'flex'} justifyContent={'center'}>
-            <InputGroup width="964px" height="82px">
+        <Flex
+            mt={{ base: '2rem', md: '3rem' }}
+            width="100%"
+            display={'flex'}
+            justifyContent={'center'}
+            alignItems={'center'}
+        >
+            <InputGroup mx="1rem" maxW={{ base: '100%', md: '964px' }}>
                 <Input
-                    fontSize={'22px'}
-                    placeholder="Search for product name, product type, brand name, category, etc..."
-                    height="100%"
-                    borderRadius="40px"
+                    height={{ base: '52px', md: '86px' }}
+                    width={'100%'}
                     padding="16px 8px 16px 28px"
                     border="2px solid"
+                    borderRadius="40px"
                     borderColor="#3E3E3E"
                     backgroundColor="black"
-                    color="white"
+                    fontSize={{ base: '14px', md: '22px' }}
+                    color="#3E3E3E"
+                    placeholder="Search for product name, product type, brand name, category, etc..."
+                    _placeholder={{ color: '#3E3E3E' }}
+                    _hover={{ borderColor: 'primary.indigo.900' }}
+                    cursor={'pointer'}
+                    noOfLines={1}
                     onClick={() => {
                         setSearchOpened(true);
                     }}
@@ -52,8 +55,10 @@ const SearchBar = () => {
                     alignItems="center"
                     pointerEvents="none"
                     mr="5"
+                    ml="5"
+                    fontSize={{ base: '20px', md: '28px' }}
                 >
-                    <FaSearch size={28} color="#3E3E3E" />
+                    <FaSearch color="#3E3E3E" />
                 </InputRightElement>
             </InputGroup>
             {searchOpened && (
@@ -63,7 +68,7 @@ const SearchBar = () => {
                     }}
                 />
             )}
-        </Box>
+        </Flex>
     );
 };
 

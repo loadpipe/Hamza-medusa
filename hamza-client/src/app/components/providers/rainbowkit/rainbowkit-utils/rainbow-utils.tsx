@@ -12,7 +12,15 @@ import {
     walletConnectWallet,
 } from '@rainbow-me/rainbowkit/wallets';
 import { configureChains, createConfig } from 'wagmi';
-import { mainnet, optimismSepolia, sepolia } from 'wagmi/chains';
+import {
+    mainnet,
+    optimismSepolia,
+    optimism,
+    sepolia,
+    linea,
+    lineaTestnet,
+    goerli,
+} from 'wagmi/chains';
 import { useNetwork, useSwitchNetwork } from 'wagmi';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
@@ -51,7 +59,7 @@ export const darkThemeConfig = darkTheme({
 // export { customSepolia };
 
 export const { chains, publicClient, webSocketPublicClient } = configureChains(
-    [optimismSepolia, sepolia],
+    [sepolia, mainnet, optimismSepolia, optimism, linea, lineaTestnet, goerli],
     [
         alchemyProvider({
             apiKey: ALCHEMY_API_KEY,
@@ -68,8 +76,8 @@ export const { chains, publicClient, webSocketPublicClient } = configureChains(
 );
 
 type SwitchNetworkProps = {
-    enabled: boolean
-}
+    enabled: boolean;
+};
 
 export const SwitchNetwork = ({ enabled }: SwitchNetworkProps) => {
     const { chain } = useNetwork();
@@ -77,7 +85,7 @@ export const SwitchNetwork = ({ enabled }: SwitchNetworkProps) => {
         useSwitchNetwork();
     const { isOpen, onOpen, onClose } = useDisclosure();
 
-    const voidFunction = () => { };
+    const voidFunction = () => {};
 
     const requiredChains = [11155111]; // Sepolia and Optimism Sepolia
 
@@ -99,7 +107,7 @@ export const SwitchNetwork = ({ enabled }: SwitchNetworkProps) => {
 
     if (enabled) {
         return (
-            <Modal isOpen={isOpen} onClose={() => { }}>
+            <Modal isOpen={isOpen} onClose={() => {}}>
                 <ModalOverlay />
                 <ModalContent>
                     <ModalHeader>Switch Network</ModalHeader>
@@ -124,7 +132,7 @@ export const SwitchNetwork = ({ enabled }: SwitchNetworkProps) => {
             </Modal>
         );
     } else {
-        return <></>
+        return <></>;
     }
 };
 // const { connectors } = getDefaultWallets({

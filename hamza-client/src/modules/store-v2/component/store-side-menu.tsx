@@ -57,10 +57,14 @@ const SideMenu = () => {
             {/* Categories */}
             <Box mt="2rem">
                 <Heading as="h2" size="h2">
-                    Categories
+                    Stores
                 </Heading>
 
                 <Flex mt="1rem" flexDirection={'column'} gap="16px">
+                    <CategoryButton
+                        categoryType="home_light"
+                        categoryName="All"
+                    />
                     <CategoryButton
                         categoryType="home_light"
                         categoryName="Legendary Light Design"
@@ -72,6 +76,19 @@ const SideMenu = () => {
                     <CategoryButton
                         categoryType="clothes"
                         categoryName="Medusa Merch"
+                    />
+                    <CategoryButton
+                        categoryType="games"
+                        categoryName="Drones"
+                    />
+                    <CategoryButton categoryType="games" categoryName="Legos" />
+                    <CategoryButton
+                        categoryType="games"
+                        categoryName="Board Games"
+                    />
+                    <CategoryButton
+                        categoryType="games"
+                        categoryName="Workout Gear"
                     />
                     <CategoryButton
                         categoryType="games"

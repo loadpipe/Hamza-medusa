@@ -3,6 +3,7 @@
 import { Region } from '@medusajs/medusa';
 import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
 import React, { Suspense, useEffect, useState } from 'react';
+import LocalizedClientLink from '@modules/common/components/localized-client-link';
 
 import ImageGallery from '@modules/products/components/image-gallery';
 import ProductActions from '@modules/products/components/product-actions';
@@ -24,6 +25,7 @@ import useProductPreview from '@store/product-preview/product-preview';
 import VendorBanner from '../components/product-preview/components/vendor-banner';
 import axios from 'axios';
 import Tweet from '@/components/tweet';
+import { XMark } from '@medusajs/icons';
 
 type ProductTemplateProps = {
     product: PricedProduct;
@@ -102,10 +104,17 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
             alignItems="center"
             mx="1rem"
         >
+            <Flex maxWidth="1280px" width="100%" justifyContent="left">
+                <LocalizedClientLink
+                    href="/"
+                    className="flex gap-2 text-white hover:text-ui-fg-base"
+                >
+                    <XMark /> Back to Products
+                </LocalizedClientLink>
+            </Flex>
             <Flex mt="2rem">
                 <PreviewGallery />
             </Flex>
-
             <Flex
                 maxWidth="1280px"
                 width="100%"
@@ -133,10 +142,9 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
                     order={{ base: 1, md: 2 }}
                     alignSelf="flex-start"
                 >
-                    <PreviewCheckout />
+                    <PreviewCheckout productId={product.id as string} />
                 </Flex>
             </Flex>
-
             <VendorBanner vendor={vendor} />
             <Divider
                 color="#555555"

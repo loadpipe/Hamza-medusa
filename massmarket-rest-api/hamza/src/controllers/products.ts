@@ -43,12 +43,12 @@ export const productsController = {
                 if (rc) {
                     const promises: Promise<HexString>[] = [];
                     for (let prod of input.products) {
-                        promises.push(rc.createProduct(prod));
+                        console.log('creating product...');
+                        output.productIds.push(await rc.createProduct(prod));
                     }
 
-                    output.productIds = await Promise.all(promises);
-
                     //TODO: better success check
+                    console.log('returning ', output);
                     output.success =
                         output.productIds.length == input.products.length;
                 }
@@ -89,6 +89,32 @@ export const productsController = {
 
                     output.success = true;
                 }
+                return output;
+            },
+            200
+        );
+    },
+
+    listen: async (req: Request, res: Response) => {
+        serveRequest(
+            req,
+            res,
+            async (id, body) => {
+                const productId = id;
+                const input: IUpdateProductInput = body;
+                const output = {
+                    success: false,
+                };
+
+                //get the client
+                const rc = await RelayClientWrapper.get(
+                    ENDPOINT,
+                    '0xf9bd19671391ec9ce554eb7b788e5c661a5906b70fbbf6f4adbbd8383623b058',
+                    '0xff5724192f4d2b19c9d3fdca64a5bd04cb886ce20c2cedbccbe7ae0060bc6b53'
+                );
+
+                rc.startListeningForEvents();
+
                 return output;
             },
             200

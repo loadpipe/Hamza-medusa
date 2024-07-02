@@ -1,6 +1,12 @@
 {
     "store": {
-        "currencies": ["eur", "usd", "eth", "usdc", "usdt"],
+        "currencies": [
+            "eur",
+            "usd",
+            "eth",
+            "usdc",
+            "usdt"
+        ],
         "default_currency_code": "eth"
     },
     "users": [
@@ -17,18 +23,37 @@
             "name": "EU",
             "currency_code": "eth",
             "tax_rate": 0,
-            "payment_providers": ["crypto"],
-            "fulfillment_providers": ["manual"],
-            "countries": ["gb", "de", "dk", "se", "fr", "es", "it"]
+            "payment_providers": [
+                "crypto"
+            ],
+            "fulfillment_providers": [
+                "manual"
+            ],
+            "countries": [
+                "gb",
+                "de",
+                "dk",
+                "se",
+                "fr",
+                "es",
+                "it"
+            ]
         },
         {
             "id": "test-region-na",
             "name": "NA",
             "currency_code": "eth",
             "tax_rate": 0,
-            "payment_providers": ["crypto"],
-            "fulfillment_providers": ["manual"],
-            "countries": ["us", "ca"]
+            "payment_providers": [
+                "crypto"
+            ],
+            "fulfillment_providers": [
+                "manual"
+            ],
+            "countries": [
+                "us",
+                "ca"
+            ]
         }
     ],
     "shipping_options": [
@@ -82,7 +107,7 @@
                 "id": "manual-fulfillment"
             },
             "price_type": "flat_rate",
-            "amount": 800
+            "amount": 30000
         },
         {
             "name": "FakeEx Express",
@@ -92,7 +117,7 @@
                 "id": "manual-fulfillment"
             },
             "price_type": "flat_rate",
-            "amount": 1200
+            "amount": 32000
         },
         {
             "name": "FakeEx Return",
@@ -103,7 +128,7 @@
             },
             "price_type": "flat_rate",
             "is_return": true,
-            "amount": 800
+            "amount": 31000
         },
         {
             "name": "I want to return it myself",
@@ -179,12 +204,18 @@
             "is_giftcard": false,
             "weight": 260,
             "images": [
-                "https://images.hamza.biz/Legendary/indout/LLD_indout1.png"
+                "https://images.hamza.biz/Legendary/indout/LLD_indout1.png",
+                "https://images.hamza.biz/Legendary/indout/lld_indout2.jpg",
+                "https://images.hamza.biz/Legendary/indout/lld_indout3.jpg",
+                "https://images.hamza.biz/Legendary/indout/lld_indout4.jpg",
+                "https://images.hamza.biz/Legendary/indout/lld_indout5.jpg"
             ],
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -193,15 +224,15 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 4400000
+                            "amount": 61000000
                         },
                         {
                             "currency_code": "usdc",
-                            "amount": 23000
+                            "amount": 21100
                         },
                         {
                             "currency_code": "usdt",
-                            "amount": 23000
+                            "amount": 21100
                         }
                     ],
                     "options": [
@@ -228,12 +259,18 @@
             "is_giftcard": false,
             "weight": 260,
             "images": [
-                "https://images.hamza.biz/Legendary/tripod/LLD_tripod1.png"
+                "https://images.hamza.biz/Legendary/tripod/LLD_tripod1.png",
+                "https://images.hamza.biz/Legendary/tripod/lld_tripod2.jpg",
+                "https://images.hamza.biz/Legendary/tripod/lld_tripod3.jpg",
+                "https://images.hamza.biz/Legendary/tripod/lld_tripod4.jpeg",
+                "https://images.hamza.biz/Legendary/tripod/lld_tripod5.jpeg"
             ],
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -242,7 +279,7 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 4400000
+                            "amount": 62000000
                         },
                         {
                             "currency_code": "usdc",
@@ -277,12 +314,18 @@
             "is_giftcard": false,
             "weight": 260,
             "images": [
-                "https://images.hamza.biz/Legendary/mood/LLD_mood1.webp"
+                "https://images.hamza.biz/Legendary/mood/LLD_mood1.webp",
+                "https://images.hamza.biz/Legendary/mood/lld_mood2.jpeg",
+                "https://images.hamza.biz/Legendary/mood/lld_mood3.jpeg",
+                "https://images.hamza.biz/Legendary/mood/lld_mood4.jpeg",
+                "https://images.hamza.biz/Legendary/mood/lld_mood5.jpeg"
             ],
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -291,15 +334,15 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 4400000
+                            "amount": 31000000
                         },
                         {
                             "currency_code": "usdc",
-                            "amount": 23000
+                            "amount": 13000
                         },
                         {
                             "currency_code": "usdt",
-                            "amount": 23000
+                            "amount": 13000
                         }
                     ],
                     "options": [
@@ -335,7 +378,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -344,7 +389,7 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 230000
+                            "amount": 3000000
                         },
                         {
                             "currency_code": "usdc",
@@ -388,7 +433,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -397,7 +444,7 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 1200000
+                            "amount": 1700000
                         },
                         {
                             "currency_code": "usdc",
@@ -441,7 +488,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -450,7 +499,7 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 640000
+                            "amount": 1300000
                         },
                         {
                             "currency_code": "usdc",
@@ -484,11 +533,16 @@
             "handle": "headphones",
             "is_giftcard": false,
             "weight": 250,
-            "images": ["https://images.hamza.biz/headphones.webp"],
+            "images": [
+                "https://images.hamza.biz/headphones.webp"
+            ],
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black", "Silver"]
+                    "values": [
+                        "Black",
+                        "Silver"
+                    ]
                 }
             ],
             "variants": [
@@ -497,7 +551,7 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 4800000
+                            "amount": 68000000
                         },
                         {
                             "currency_code": "usdc",
@@ -531,11 +585,16 @@
             "handle": "headset_future",
             "is_giftcard": false,
             "weight": 300,
-            "images": ["https://images.hamza.biz/dalle_black_vr.webp"],
+            "images": [
+                "https://images.hamza.biz/dalle_black_vr.webp"
+            ],
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Sleek Black", "Space Gray"]
+                    "values": [
+                        "Sleek Black",
+                        "Space Gray"
+                    ]
                 }
             ],
             "variants": [
@@ -544,7 +603,7 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 4500000
+                            "amount": 68000000
                         },
                         {
                             "currency_code": "usdc",
@@ -578,11 +637,16 @@
             "handle": "headset_audio",
             "is_giftcard": false,
             "weight": 260,
-            "images": ["https://images.hamza.biz/dalle_vr.webp"],
+            "images": [
+                "https://images.hamza.biz/dalle_vr.webp"
+            ],
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Robot White", "Electronic Blue"]
+                    "values": [
+                        "Robot White",
+                        "Electronic Blue"
+                    ]
                 }
             ],
             "variants": [
@@ -591,7 +655,7 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 4400000
+                            "amount": 68000000
                         },
                         {
                             "currency_code": "usdc",
@@ -625,11 +689,16 @@
             "handle": "headset_sleek",
             "is_giftcard": false,
             "weight": 290,
-            "images": ["https://images.hamza.biz/dalle_vr_2.webp"],
+            "images": [
+                "https://images.hamza.biz/dalle_vr_2.webp"
+            ],
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Racing Red", "Midnight Black"]
+                    "values": [
+                        "Racing Red",
+                        "Midnight Black"
+                    ]
                 }
             ],
             "variants": [
@@ -638,7 +707,7 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 4800000
+                            "amount": 35000000
                         },
                         {
                             "currency_code": "usdc",
@@ -672,11 +741,16 @@
             "handle": "headset_aural",
             "is_giftcard": false,
             "weight": 275,
-            "images": ["https://images.hamza.biz/dalle_vr_headset.webp"],
+            "images": [
+                "https://images.hamza.biz/dalle_vr_headset.webp"
+            ],
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Galactic Black", "Stellar White"]
+                    "values": [
+                        "Galactic Black",
+                        "Stellar White"
+                    ]
                 }
             ],
             "variants": [
@@ -685,7 +759,7 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 2500000
+                            "amount": 8000000
                         },
                         {
                             "currency_code": "usdc",
@@ -719,11 +793,16 @@
             "handle": "headset_vision",
             "is_giftcard": false,
             "weight": 310,
-            "images": ["https://images.hamza.biz/dalle_vr_headset3.webp"],
+            "images": [
+                "https://images.hamza.biz/dalle_vr_headset3.webp"
+            ],
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Visionary Black", "Innovator Ivory"]
+                    "values": [
+                        "Visionary Black",
+                        "Innovator Ivory"
+                    ]
                 }
             ],
             "variants": [
@@ -732,7 +811,7 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 2500000
+                            "amount": 3000000
                         },
                         {
                             "currency_code": "usdc",
@@ -766,11 +845,16 @@
             "handle": "headset_echo",
             "is_giftcard": false,
             "weight": 265,
-            "images": ["https://images.hamza.biz/vr_3.webp"],
+            "images": [
+                "https://images.hamza.biz/vr_3.webp"
+            ],
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Eclipse Black", "Solar White"]
+                    "values": [
+                        "Eclipse Black",
+                        "Solar White"
+                    ]
                 }
             ],
             "variants": [
@@ -779,7 +863,7 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 6600000
+                            "amount": 3000000
                         },
                         {
                             "currency_code": "usdc",
@@ -813,11 +897,16 @@
             "handle": "headset_nova",
             "is_giftcard": false,
             "weight": 285,
-            "images": ["https://images.hamza.biz/sony_wh1000xm4.jpeg"],
+            "images": [
+                "https://images.hamza.biz/sony_wh1000xm4.jpeg"
+            ],
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Nebula Navy", "Cosmic Chrome"]
+                    "values": [
+                        "Nebula Navy",
+                        "Cosmic Chrome"
+                    ]
                 }
             ],
             "variants": [
@@ -826,7 +915,7 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 6600000
+                            "amount": 3000000
                         },
                         {
                             "currency_code": "usdc",
@@ -869,11 +958,19 @@
             "options": [
                 {
                     "title": "Size",
-                    "values": ["S", "M", "L", "XL"]
+                    "values": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                    ]
                 },
                 {
                     "title": "Color",
-                    "values": ["Black", "White"]
+                    "values": [
+                        "Black",
+                        "White"
+                    ]
                 }
             ],
             "variants": [
@@ -882,7 +979,7 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 670000
+                            "amount": 3100000
                         },
                         {
                             "currency_code": "usdc",
@@ -909,7 +1006,7 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 670000
+                            "amount": 3200000
                         },
                         {
                             "currency_code": "usdc",
@@ -936,7 +1033,7 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 670000
+                            "amount": 3300000
                         },
                         {
                             "currency_code": "usdc",
@@ -1115,7 +1212,12 @@
             "options": [
                 {
                     "title": "Size",
-                    "values": ["S", "M", "L", "XL"]
+                    "values": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                    ]
                 }
             ],
             "variants": [
@@ -1237,7 +1339,12 @@
             "options": [
                 {
                     "title": "Size",
-                    "values": ["S", "M", "L", "XL"]
+                    "values": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                    ]
                 }
             ],
             "variants": [
@@ -1359,7 +1466,12 @@
             "options": [
                 {
                     "title": "Size",
-                    "values": ["S", "M", "L", "XL"]
+                    "values": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                    ]
                 }
             ],
             "variants": [
@@ -1484,7 +1596,12 @@
             "options": [
                 {
                     "title": "Size",
-                    "values": ["S", "M", "L", "XL"]
+                    "values": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                    ]
                 }
             ],
             "variants": [
@@ -1609,7 +1726,12 @@
             "options": [
                 {
                     "title": "Size",
-                    "values": ["S", "M", "L", "XL"]
+                    "values": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                    ]
                 }
             ],
             "variants": [
@@ -1733,7 +1855,9 @@
             "options": [
                 {
                     "title": "Size",
-                    "values": ["One Size"]
+                    "values": [
+                        "One Size"
+                    ]
                 }
             ],
             "variants": [
@@ -1786,7 +1910,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Silver"]
+                    "values": [
+                        "Silver"
+                    ]
                 }
             ],
             "variants": [
@@ -1795,15 +1921,15 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 4800000
+                            "amount": 41000000
                         },
                         {
                             "currency_code": "usdc",
-                            "amount": 12400
+                            "amount": 12300
                         },
                         {
                             "currency_code": "usdt",
-                            "amount": 12400
+                            "amount": 12300
                         }
                     ],
                     "options": [
@@ -1839,7 +1965,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Silver"]
+                    "values": [
+                        "Silver"
+                    ]
                 }
             ],
             "variants": [
@@ -1848,15 +1976,15 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 4800000
+                            "amount": 3800000
                         },
                         {
                             "currency_code": "usdc",
-                            "amount": 12400
+                            "amount": 12200
                         },
                         {
                             "currency_code": "usdt",
-                            "amount": 12400
+                            "amount": 12200
                         }
                     ],
                     "options": [
@@ -1892,7 +2020,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["White"]
+                    "values": [
+                        "White"
+                    ]
                 }
             ],
             "variants": [
@@ -1901,15 +2031,15 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 4800000
+                            "amount": 38000000
                         },
                         {
                             "currency_code": "usdc",
-                            "amount": 12400
+                            "amount": 12100
                         },
                         {
                             "currency_code": "usdt",
-                            "amount": 12400
+                            "amount": 12100
                         }
                     ],
                     "options": [
@@ -1945,7 +2075,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Silver"]
+                    "values": [
+                        "Silver"
+                    ]
                 }
             ],
             "variants": [
@@ -1954,15 +2086,15 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 4800000
+                            "amount": 68000000
                         },
                         {
                             "currency_code": "usdc",
-                            "amount": 12400
+                            "amount": 22100
                         },
                         {
                             "currency_code": "usdt",
-                            "amount": 12400
+                            "amount": 22100
                         }
                     ],
                     "options": [
@@ -1998,7 +2130,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["White"]
+                    "values": [
+                        "White"
+                    ]
                 }
             ],
             "variants": [
@@ -2007,7 +2141,7 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 4800000
+                            "amount": 48000000
                         },
                         {
                             "currency_code": "usdc",
@@ -2051,7 +2185,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -2060,7 +2196,7 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 4800000
+                            "amount": 48000000
                         },
                         {
                             "currency_code": "usdc",
@@ -2104,7 +2240,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Silver"]
+                    "values": [
+                        "Silver"
+                    ]
                 }
             ],
             "variants": [
@@ -2113,7 +2251,7 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 4800000
+                            "amount": 38000000
                         },
                         {
                             "currency_code": "usdc",
@@ -2157,7 +2295,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["White"]
+                    "values": [
+                        "White"
+                    ]
                 }
             ],
             "variants": [
@@ -2166,15 +2306,15 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 4800000
+                            "amount": 32000000
                         },
                         {
                             "currency_code": "usdc",
-                            "amount": 12400
+                            "amount": 11400
                         },
                         {
                             "currency_code": "usdt",
-                            "amount": 12400
+                            "amount": 11400
                         }
                     ],
                     "options": [
@@ -2210,7 +2350,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["White"]
+                    "values": [
+                        "White"
+                    ]
                 }
             ],
             "variants": [
@@ -2219,7 +2361,7 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 4800000
+                            "amount": 38000000
                         },
                         {
                             "currency_code": "usdc",
@@ -2263,7 +2405,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Red"]
+                    "values": [
+                        "Red"
+                    ]
                 }
             ],
             "variants": [
@@ -2272,15 +2416,15 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 4800000
+                            "amount": 31000000
                         },
                         {
                             "currency_code": "usdc",
-                            "amount": 12400
+                            "amount": 10500
                         },
                         {
                             "currency_code": "usdt",
-                            "amount": 12400
+                            "amount": 10500
                         }
                     ],
                     "options": [
@@ -2315,7 +2459,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Brown"]
+                    "values": [
+                        "Brown"
+                    ]
                 }
             ],
             "variants": [
@@ -2324,15 +2470,15 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 4800000
+                            "amount": 31000000
                         },
                         {
                             "currency_code": "usdc",
-                            "amount": 12400
+                            "amount": 10100
                         },
                         {
                             "currency_code": "usdt",
-                            "amount": 12400
+                            "amount": 10100
                         }
                     ],
                     "options": [
@@ -2368,7 +2514,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Green"]
+                    "values": [
+                        "Green"
+                    ]
                 }
             ],
             "variants": [
@@ -2377,7 +2525,7 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 4800000
+                            "amount": 31000000
                         },
                         {
                             "currency_code": "usdc",
@@ -2421,7 +2569,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Silver"]
+                    "values": [
+                        "Silver"
+                    ]
                 }
             ],
             "variants": [
@@ -2430,15 +2580,15 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 4800000
+                            "amount": 48000000
                         },
                         {
                             "currency_code": "usdc",
-                            "amount": 12400
+                            "amount": 11200
                         },
                         {
                             "currency_code": "usdt",
-                            "amount": 12400
+                            "amount": 11200
                         }
                     ],
                     "options": [
@@ -2474,7 +2624,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Red"]
+                    "values": [
+                        "Red"
+                    ]
                 }
             ],
             "variants": [
@@ -2483,15 +2635,15 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 4800000
+                            "amount": 4900000
                         },
                         {
                             "currency_code": "usdc",
-                            "amount": 12400
+                            "amount": 20000
                         },
                         {
                             "currency_code": "usdt",
-                            "amount": 12400
+                            "amount": 20000
                         }
                     ],
                     "options": [
@@ -2527,7 +2679,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Red"]
+                    "values": [
+                        "Red"
+                    ]
                 }
             ],
             "variants": [
@@ -2536,15 +2690,15 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 4800000
+                            "amount": 69000000
                         },
                         {
                             "currency_code": "usdc",
-                            "amount": 12400
+                            "amount": 19900
                         },
                         {
                             "currency_code": "usdt",
-                            "amount": 12400
+                            "amount": 19900
                         }
                     ],
                     "options": [
@@ -2580,7 +2734,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Silver"]
+                    "values": [
+                        "Silver"
+                    ]
                 }
             ],
             "variants": [
@@ -2589,15 +2745,15 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 4800000
+                            "amount": 35000000
                         },
                         {
                             "currency_code": "usdc",
-                            "amount": 12400
+                            "amount": 5400
                         },
                         {
                             "currency_code": "usdt",
-                            "amount": 12400
+                            "amount": 5400
                         }
                     ],
                     "options": [
@@ -2633,7 +2789,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["White"]
+                    "values": [
+                        "White"
+                    ]
                 }
             ],
             "variants": [
@@ -2642,15 +2800,15 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 4800000
+                            "amount": 21000000
                         },
                         {
                             "currency_code": "usdc",
-                            "amount": 12400
+                            "amount": 9900
                         },
                         {
                             "currency_code": "usdt",
-                            "amount": 12400
+                            "amount": 9900
                         }
                     ],
                     "options": [
@@ -2686,7 +2844,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -2695,15 +2855,15 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 4800000
+                            "amount": 58000000
                         },
                         {
                             "currency_code": "usdc",
-                            "amount": 12400
+                            "amount": 19900
                         },
                         {
                             "currency_code": "usdt",
-                            "amount": 12400
+                            "amount": 19900
                         }
                     ],
                     "options": [
@@ -2739,7 +2899,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -2748,15 +2910,15 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 4800000
+                            "amount": 12000000
                         },
                         {
                             "currency_code": "usdc",
-                            "amount": 12400
+                            "amount": 2400
                         },
                         {
                             "currency_code": "usdt",
-                            "amount": 12400
+                            "amount": 2400
                         }
                     ],
                     "options": [
@@ -2792,7 +2954,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -2801,15 +2965,15 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 4800000
+                            "amount": 24000000
                         },
                         {
                             "currency_code": "usdc",
-                            "amount": 12400
+                            "amount": 6600
                         },
                         {
                             "currency_code": "usdt",
-                            "amount": 12400
+                            "amount": 6600
                         }
                     ],
                     "options": [
@@ -2845,7 +3009,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -2854,15 +3020,15 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 4800000
+                            "amount": 28000000
                         },
                         {
                             "currency_code": "usdc",
-                            "amount": 12400
+                            "amount": 4400
                         },
                         {
                             "currency_code": "usdt",
-                            "amount": 12400
+                            "amount": 4400
                         }
                     ],
                     "options": [
@@ -2897,7 +3063,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -2906,15 +3074,15 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 4800000
+                            "amount": 38000000
                         },
                         {
                             "currency_code": "usdc",
-                            "amount": 12400
+                            "amount": 6500
                         },
                         {
                             "currency_code": "usdt",
-                            "amount": 12400
+                            "amount": 6500
                         }
                     ],
                     "options": [
@@ -2949,7 +3117,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -2958,7 +3128,7 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 4800000
+                            "amount": 48000000
                         },
                         {
                             "currency_code": "usdc",
@@ -3001,7 +3171,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -3010,15 +3182,15 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 4800000
+                            "amount": 18000000
                         },
                         {
                             "currency_code": "usdc",
-                            "amount": 12400
+                            "amount": 5900
                         },
                         {
                             "currency_code": "usdt",
-                            "amount": 12400
+                            "amount": 5900
                         }
                     ],
                     "options": [
@@ -3054,7 +3226,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -3063,15 +3237,15 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 4800000
+                            "amount": 50000000
                         },
                         {
                             "currency_code": "usdc",
-                            "amount": 12400
+                            "amount": 15500
                         },
                         {
                             "currency_code": "usdt",
-                            "amount": 12400
+                            "amount": 15500
                         }
                     ],
                     "options": [
@@ -3107,7 +3281,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Grey"]
+                    "values": [
+                        "Grey"
+                    ]
                 }
             ],
             "variants": [
@@ -3120,11 +3296,11 @@
                         },
                         {
                             "currency_code": "usdc",
-                            "amount": 12400
+                            "amount": 2400
                         },
                         {
                             "currency_code": "usdt",
-                            "amount": 12400
+                            "amount": 2400
                         }
                     ],
                     "options": [
@@ -3160,7 +3336,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -3173,11 +3351,11 @@
                         },
                         {
                             "currency_code": "usdc",
-                            "amount": 12400
+                            "amount": 2250
                         },
                         {
                             "currency_code": "usdt",
-                            "amount": 12400
+                            "amount": 2250
                         }
                     ],
                     "options": [
@@ -3213,7 +3391,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -3222,15 +3402,15 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 4800000
+                            "amount": 4300000
                         },
                         {
                             "currency_code": "usdc",
-                            "amount": 12400
+                            "amount": 2100
                         },
                         {
                             "currency_code": "usdt",
-                            "amount": 12400
+                            "amount": 2100
                         }
                     ],
                     "options": [
@@ -3266,7 +3446,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -3275,15 +3457,15 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 4800000
+                            "amount": 4500000
                         },
                         {
                             "currency_code": "usdc",
-                            "amount": 12400
+                            "amount": 2900
                         },
                         {
                             "currency_code": "usdt",
-                            "amount": 12400
+                            "amount": 2900
                         }
                     ],
                     "options": [
@@ -3319,7 +3501,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -3328,15 +3512,15 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 4800000
+                            "amount": 6600000
                         },
                         {
                             "currency_code": "usdc",
-                            "amount": 12400
+                            "amount": 6000
                         },
                         {
                             "currency_code": "usdt",
-                            "amount": 12400
+                            "amount": 6000
                         }
                     ],
                     "options": [
@@ -3372,7 +3556,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -3381,15 +3567,15 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 4800000
+                            "amount": 6800000
                         },
                         {
                             "currency_code": "usdc",
-                            "amount": 12400
+                            "amount": 5800
                         },
                         {
                             "currency_code": "usdt",
-                            "amount": 12400
+                            "amount": 5800
                         }
                     ],
                     "options": [
@@ -3424,7 +3610,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -3437,11 +3625,11 @@
                         },
                         {
                             "currency_code": "usdc",
-                            "amount": 12400
+                            "amount": 5550
                         },
                         {
                             "currency_code": "usdt",
-                            "amount": 12400
+                            "amount": 5550
                         }
                     ],
                     "options": [
@@ -3477,7 +3665,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -3486,15 +3676,15 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 4800000
+                            "amount": 4100000
                         },
                         {
                             "currency_code": "usdc",
-                            "amount": 12400
+                            "amount": 6400
                         },
                         {
                             "currency_code": "usdt",
-                            "amount": 12400
+                            "amount": 6400
                         }
                     ],
                     "options": [
@@ -3530,7 +3720,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -3539,15 +3731,15 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 4800000
+                            "amount": 4200000
                         },
                         {
                             "currency_code": "usdc",
-                            "amount": 12400
+                            "amount": 5200
                         },
                         {
                             "currency_code": "usdt",
-                            "amount": 12400
+                            "amount": 5200
                         }
                     ],
                     "options": [
@@ -3583,7 +3775,9 @@
             "options": [
                 {
                     "title": "Color",
-                    "values": ["Black"]
+                    "values": [
+                        "Black"
+                    ]
                 }
             ],
             "variants": [
@@ -3592,15 +3786,15 @@
                     "prices": [
                         {
                             "currency_code": "eth",
-                            "amount": 4800000
+                            "amount": 3800000
                         },
                         {
                             "currency_code": "usdc",
-                            "amount": 12400
+                            "amount": 2800
                         },
                         {
                             "currency_code": "usdt",
-                            "amount": 12400
+                            "amount": 2800
                         }
                     ],
                     "options": [

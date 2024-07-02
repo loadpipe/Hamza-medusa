@@ -5,17 +5,6 @@ import { RelayClientWrapper } from '../massmarket/client.js';
 import { bytesToHex, keccak256 } from 'viem';
 import { sleep } from '../utils.js';
 
-function isZeroAddress(value: any): boolean {
-    if (!value) return true;
-
-    value = value.trim();
-    if (value.length < 1) return true;
-
-    if (value.replaceAll('0', '') === 'x') return true;
-
-    return false;
-}
-
 const FAKE_CHECKOUT = 0;
 
 export const checkoutController = {
@@ -31,6 +20,8 @@ export const checkoutController = {
                 console.log(JSON.stringify(input));
 
                 let output = {};
+
+                //in fake checkout, just return some values
                 if (FAKE_CHECKOUT) {
                     output = {
                         success: true,
@@ -50,11 +41,13 @@ export const checkoutController = {
                     };
                 } else {
                     //validate input
-                    if (!validateCheckoutInput(res, input)) {
-                        console.log('validation failed');
-                        return null;
-                    }
+                    //TODO: skip validation for demo
+                    //if (!validateCheckoutInput(res, input)) {
+                    //    console.log('validation failed');
+                    //    return null;
+                    //}
 
+                    //fake inputs for testing if needed
                     /*
                     input.storeId =
                         '0x382e9fdf10295e01ad4c7e4dc7e3cecf461016addbe8e15e55736983af39426c';
@@ -89,11 +82,19 @@ export const checkoutController = {
                     );
 
                     //do the full checkout
-                    if (rc) {
+                    if (rc && input.items.length) {
+                        console.log('creating cart...');
                         const cartId = await rc.createCart();
                         console.log('CART ID: ', cartId);
 
-                        //TODO: handle empty payment currency
+                        //handle empty payment currency
+                        if (
+                            !input.paymentCurrency ||
+                            !input.paymentCurrency?.length ||
+                            input.paymentCurrency?.replaceAll('0', '0') === 'x'
+                        )
+                            input.paymentCurrency =
+                                '0x0000000000000000000000000000000000000000';
 
                         //add products to cart
                         for (const item of input.items) {
@@ -110,12 +111,12 @@ export const checkoutController = {
                         await rc.commitCart(cartId, input.paymentCurrency);
 
                         //try a number of times to retrieve the checkout event
-                        const numRetries = 3;
+                        const numRetries = 2;
                         let retry = 0;
                         while (retry < numRetries) {
                             console.log('trying to get checkout event...');
                             const event =
-                                await await rc.getCartFinalizedEvent(cartId);
+                                await rc.getCartFinalizedEvent(cartId);
 
                             //if event is gotten, then return output from it
                             if (event) {
@@ -147,6 +148,7 @@ export const checkoutController = {
                                     event.paymentId
                                 );
 
+                                //checkout success
                                 checkoutOutput.success = true;
                                 break;
                             } else {
@@ -158,6 +160,10 @@ export const checkoutController = {
                         }
 
                         output = checkoutOutput;
+                    } else {
+                        console.log(
+                            'did not get RC, or input.items.length was 0'
+                        );
                     }
                 }
 
@@ -174,9 +180,9 @@ function validateCheckoutInput(res: Response, input: ICheckoutInput): boolean {
 
     if (!input.items || !input.items.length) {
         console.log('items missing');
-        //res.status(400).json({
-        //    msg: 'Required: items',
-        //});
+        res.status(400).json({
+            msg: 'Required: items',
+        });
         return false;
     }
     return true;

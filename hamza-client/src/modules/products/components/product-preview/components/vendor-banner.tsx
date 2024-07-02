@@ -1,7 +1,8 @@
 import React from 'react';
-import { Box, Text, Flex, Container, Divider } from '@chakra-ui/react';
+import { Flex, Text, Box, Image } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
 import { useParams } from 'next/navigation';
+import { FaCheckCircle } from 'react-icons/fa';
 
 type VendorProps = {
     vendor: string;
@@ -25,6 +26,39 @@ const VendorBanner = (props: VendorProps) => {
             borderRadius={'16px'}
             p="2rem"
         >
+            <Box mr="1rem">
+                <Image
+                    src="https://images.hamza.biz/Legendary/wall/wall1.jpeg"
+                    alt="Light Logo"
+                    boxSize="50px"
+                    borderRadius="full"
+                />
+            </Box>
+
+            {/* Middle Section with Text */}
+            <Box flex="1">
+                <Flex alignItems="center">
+                    <Text
+                        fontSize="24px"
+                        color="white"
+                        fontWeight="bold"
+                        mr="1rem"
+                    >
+                        {props.vendor}
+                    </Text>
+                    <FaCheckCircle color="blue" size="20px" />
+                </Flex>
+                <Flex>
+                    <Text fontSize="16px" color="gray.400">
+                        Flagship Store{' '}
+                        <Box as="span" color="green.500" mx="2">
+                            •
+                        </Box>{' '}
+                        Online
+                    </Text>
+                </Flex>
+            </Box>
+
             <Flex
                 ml="auto"
                 alignSelf="center"

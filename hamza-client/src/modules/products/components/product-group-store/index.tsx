@@ -19,10 +19,14 @@ const ProductCardGroup = ({ vendorName, filterByRating, category }: Props) => {
     // Get products from vendor
     const { data, error, isLoading } = useQuery(
         ['products', { vendor: vendorName }],
-        () =>
-            axios.get(
-                `${process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL || 'http://localhost:9000'}/store/custom/products?store_name=${vendorName}`
-            )
+        () => {
+            const url =
+                vendorName === 'All'
+                    ? `${process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL || 'http://localhost:9000'}/store/custom/all-products`
+                    : `${process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL || 'http://localhost:9000'}/store/custom/products?store_name=${vendorName}`;
+
+            return axios.get(url);
+        }
     );
 
     const { preferred_currency_code } = useCustomerAuthStore();
@@ -114,10 +118,12 @@ const ProductCardGroup = ({ vendorName, filterByRating, category }: Props) => {
                               .map((variant: any) => variant.prices)
                               .flat();
 
-                          const selectedPrice = variantPrices.find(
-                              (p: any) =>
-                                  p.currency_code === preferred_currency_code
-                          );
+                          const selectedPrice =
+                              variantPrices.find(
+                                  (p: any) =>
+                                      p.currency_code ===
+                                      preferred_currency_code
+                              ) ?? variantPrices[0];
                           const productPricing = formatCryptoPrice(
                               selectedPrice?.amount ?? 0,
                               preferred_currency_code as string

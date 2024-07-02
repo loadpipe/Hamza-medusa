@@ -11,6 +11,7 @@ import Image from 'next/image';
 import { Button } from '@medusajs/ui';
 import Thumbnail from '@modules/products/components/thumbnail';
 import { useCustomerAuthStore } from '@store/customer-auth/customer-auth';
+import { FaRegHeart } from 'react-icons/fa';
 
 interface WishlistPopoverItemProps {
     item?: WishlistType;
@@ -119,7 +120,7 @@ const WishlistDropdown: React.FC<WishlistPopoverItemProps> = () => {
                                                         key={product.id}
                                                     >
                                                         <Popover.Button>
-                                                            {({ }) =>
+                                                            {({}) =>
                                                                 product ? ( // Check if the product exists
                                                                     <LocalizedClientLink
                                                                         href={`/products/${product.handle}`}

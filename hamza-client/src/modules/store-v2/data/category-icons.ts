@@ -8,7 +8,8 @@ const categoryIcons: Record<string, any> = {
     clothes: clothes,
     games: games,
     gadgets: gadgets,
-    home_light: lights
+    home_light: lights,
+    drones: games,
 };
 
 export default categoryIcons;

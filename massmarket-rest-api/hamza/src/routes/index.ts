@@ -8,6 +8,8 @@ const router = Router();
 router.get('/test', testController.test);
 router.post('/checkout', checkoutController.doCheckout);
 router.post('/store', storeController.createStore);
+router.put('/store', storeController.enrollKeycard);
 router.post('/product', productsController.createProducts);
+router.get('/product', productsController.listen);
 
 export default router;

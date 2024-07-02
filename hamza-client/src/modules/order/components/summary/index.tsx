@@ -6,6 +6,7 @@ import LocalizedClientLink from '@modules/common/components/localized-client-lin
 import Thumbnail from '@modules/products/components/thumbnail';
 import Tweet from '@/components/tweet';
 import { useRouter, useParams } from 'next/navigation';
+import { formatCryptoPrice } from '@lib/util/get-product-price';
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL;
 
@@ -83,7 +84,12 @@ const Summary: React.FC<{ cart_id: string }> = ({ cart_id }) => {
                     <Tweet productHandle={product.handle} isPurchased={true} />
                     <Box mb={4}>
                         <Heading size="md">{product.title}</Heading>
-                        <Text mt={2}>{product.description}</Text>
+                        <div
+                            className="mt-2"
+                            dangerouslySetInnerHTML={{
+                                __html: product.description,
+                            }}
+                        ></div>
                     </Box>
                     <Stack spacing={2}>
                         <Text>
@@ -92,7 +98,11 @@ const Summary: React.FC<{ cart_id: string }> = ({ cart_id }) => {
                         <Text>Product SKU: {product.id}</Text>
                         <Text>Order ID: {product.order_id}</Text>
                         <Text>
-                            {product.unit_price} {product.currency_code}
+                            {formatCryptoPrice(
+                                product.unit_price,
+                                product.currency_code
+                            )}{' '}
+                            {product.currency_code.toUpperCase()}
                         </Text>
                         <Text>Store Name: {product.store_name}</Text>
                     </Stack>

@@ -6,24 +6,28 @@ import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 
 const QuantityButton = () => {
     const [quantityAvailable, setQuantityAvailable] = useState('');
-    const { productData, setProductData, quantity, setQuantity } =
+    const { productData, setProductData, quantity, setQuantity, variantId } =
         useProductPreview();
+
+    let selectedProductVariant =
+        productData &&
+        productData.variants &&
+        productData.variants.find((a: any) => a.id == variantId);
 
     useEffect(() => {
         const updateQuantityButton = async () => {
             if (
                 productData &&
                 productData.variants &&
-                productData.variants.length > 0
+                productData.variants.length > 0 &&
+                selectedProductVariant
             ) {
-                setQuantityAvailable(
-                    productData.variants[0].inventory_quantity
-                );
+                setQuantityAvailable(selectedProductVariant.inventory_quantity);
             }
         };
 
         updateQuantityButton();
-    }, [productData]);
+    }, [productData, selectedProductVariant]);
 
     const incrementQuantity = () => {
         if (quantity < Number(quantityAvailable)) {

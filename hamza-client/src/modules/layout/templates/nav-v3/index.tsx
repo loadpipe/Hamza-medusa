@@ -3,8 +3,10 @@ import { listRegions } from '@lib/data';
 import LocalizedClientLink from '@modules/common/components/localized-client-link';
 import CartButton from '@modules/layout/components/cart-button';
 import WishListPopover from '@/components/wishlist-dropdown';
+import Wishlist from '@/components/wishlist';
 import SideMenu from '@modules/layout/components/side-menu';
 import { WalletConnectButton } from '@/components/providers/rainbowkit/connect-button/connect-button';
+
 import {
     Flex,
     Text,
@@ -77,14 +79,18 @@ export default async function Nav() {
                         justifyContent={'center'}
                         marginLeft={'auto'}
                         backgroundColor={'transparent'}
+                        color="White"
                         cursor={'pointer'}
                         display={{ base: 'none', md: 'flex' }}
+                        _hover={{
+                            color: 'primary.indigo.900',
+                            borderColor: 'primary.indigo.900',
+                        }}
                     >
                         <Text
                             className="font-sora"
                             fontWeight={'600'}
                             fontSize={'16px'}
-                            color="White"
                             alignSelf={'center'}
                         >
                             Sell on Hamza
@@ -126,11 +132,23 @@ export default async function Nav() {
                                 mb="1rem"
                                 fontWeight={'600'}
                                 px="2rem"
+                                flex={1}
                                 color={'white'}
                                 backgroundColor={'black'}
                             >
                                 <CartButton />
                             </MenuItem>
+                            <MenuItem
+                                mt="0.5rem"
+                                mb="1rem"
+                                fontWeight={'600'}
+                                px="2rem"
+                                color={'white'}
+                                backgroundColor={'black'}
+                            >
+                                <Wishlist />
+                            </MenuItem>
+
                             <Box px={{ base: '2rem', md: 0 }}>
                                 <MenuDivider
                                     opacity={{ base: '0.5', md: '1' }}
@@ -190,25 +208,37 @@ export default async function Nav() {
                                     <Text> Market</Text>
                                 </MenuItem>
                             </NavLink>
-                            <MenuItem
-                                fontWeight={'600'}
-                                px="2rem"
-                                color={'white'}
-                                backgroundColor={'black'}
-                                _hover={{ color: 'primary.green.900' }}
+
+                            <a
+                                target="_blank"
+                                href="https://blog.hamza.biz/about/"
                             >
-                                About Us
-                            </MenuItem>
-                            <MenuItem
-                                fontWeight={'600'}
-                                px="2rem"
-                                mb="1.5rem"
-                                color={'white'}
-                                backgroundColor={'black'}
-                                _hover={{ color: 'primary.green.900' }}
+                                <MenuItem
+                                    fontWeight={'600'}
+                                    px="2rem"
+                                    color={'white'}
+                                    backgroundColor={'black'}
+                                    _hover={{ color: 'primary.green.900' }}
+                                >
+                                    About Us
+                                </MenuItem>
+                            </a>
+
+                            <a
+                                target="_blank"
+                                href="https://blog.hamza.biz/contact/"
                             >
-                                Help Center
-                            </MenuItem>
+                                <MenuItem
+                                    fontWeight={'600'}
+                                    px="2rem"
+                                    mb="1.5rem"
+                                    color={'white'}
+                                    backgroundColor={'black'}
+                                    _hover={{ color: 'primary.green.900' }}
+                                >
+                                    Help Center
+                                </MenuItem>
+                            </a>
 
                             <MenuDivider
                                 display={{ base: 'none', md: 'flex' }}

@@ -64,7 +64,7 @@ const PaymentContainer: React.FC<PaymentContainerProps> = ({
                             )}
                     </div>
                     <span className="justify-self-end text-ui-fg-base">
-                        {paymentInfoMap[paymentSession.provider_id]?.icon}
+                        {/* {paymentInfoMap[paymentSession.provider_id]?.icon} */}
                     </span>
                 </div>
             </RadioGroup.Option>

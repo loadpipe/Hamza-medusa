@@ -20,6 +20,7 @@ export class RelayClientWrapper {
     private _client: RelayClient;
     private _chain = sepolia;
     private _keyCard: Uint8Array;
+    private _listening: boolean = false;
     readonly shopId: HexString;
     eventStream: ReadableStream<any> | null = null;
 
@@ -119,7 +120,10 @@ export class RelayClientWrapper {
      * Creates a new store with a random shopId, enrolls a keycard, and writes the manifest.
      * @returns The store id and keycard value for the new store.
      */
-    static async createAndInitializeStore(endpoint: string): Promise<{
+    static async createAndInitializeStore(
+        endpoint: string,
+        walletPrivKey: HexString
+    ): Promise<{
         shopId: HexString;
         keyCard: HexString;
     }> {
@@ -149,8 +153,6 @@ export class RelayClientWrapper {
         });
 
         //create actual (store) wallet
-        const walletPrivKey =
-            '0x65c1196c888ae6bb110077201346dfe426b220ce1d49a366102a2d85e7ad0e35';
         const account: PrivateKeyAccount = privateKeyToAccount(walletPrivKey);
 
         const storeWallet = createWalletClient({
@@ -213,7 +215,7 @@ export class RelayClientWrapper {
 
         console.log('setting payee');
         await client.updateShopManifest({
-            addPayeeContract: {
+            addPayee: {
                 chainId: 11155111,
                 addr: hexToBytes('0x74b7284836F753101bD683C3843e95813b381f18'),
                 name: 'hamza-switch',
@@ -231,8 +233,6 @@ export class RelayClientWrapper {
             keyCard: keycard.string,
             shopId,
         };
-
-        //now from here on, I can do anything I want, but using the wallet as the keycard
     }
 
     /**
@@ -258,29 +258,41 @@ export class RelayClientWrapper {
 
     static async enrollNewKeycard(
         endpoint: string,
-        shopId: HexString
-    ): Promise<RelayClientWrapper> {
+        shopId: HexString,
+        privateKey: HexString
+    ): Promise<HexString> {
         const rc = new RelayClientWrapper(endpoint, shopId, '0x0', false);
-        await rc.enrollKeycard();
-        return rc;
+        await rc.enrollKeycard(privateKey);
+        return rc.keyCardToString();
     }
 
-    //TODO: check cartId against what's in event
     async getCartFinalizedEvent(cartId: HexString): Promise<any> {
         if (!this.eventStream) {
             this.eventStream = await this._client.createEventStream();
         }
 
+        //split the streams; read from one, and save the other
         const streams = this.eventStream?.tee();
         console.log('stream locked: ', streams[0]?.locked);
-        return new Promise(async (resolve, reject) => {
+
+        return await new Promise(async (resolve, reject) => {
+            //time out; if no events received after some number of seconds, return
+            setTimeout(() => {
+                this.eventStream = streams[1];
+                resolve(null);
+            }, 3000);
+
+            //read the events
             for await (const event of streams[0]) {
+                //this particular one is the finalized event
                 if (event.event?.updateOrder?.itemsFinalized) {
                     if (
+                        //check the cart id
                         bytesToHex(
                             event.event?.updateOrder?.itemsFinalized.orderHash
                         ) == keccak256(hexToBytes(cartId))
                     ) {
+                        //return the event
                         console.log(event.event?.updateOrder?.itemsFinalized);
                         this.eventStream = streams[1];
                         resolve(event?.event.updateOrder?.itemsFinalized);
@@ -293,24 +305,39 @@ export class RelayClientWrapper {
         });
     }
 
-    async listenForEvents(cartId: HexString): Promise<any> {
-        if (!this.eventStream) {
-            this.eventStream = await this._client.createEventStream();
-        }
+    async startListeningForEvents(): Promise<void> {
+        this._listening = true;
 
-        const streams = this.eventStream?.tee();
-        console.log('stream locked: ', streams[0]?.locked);
-        return new Promise(async (resolve, reject) => {
-            for await (const event of streams[0]) {
-                console.log(event);
+        while (this._listening) {
+            console.log('listening...');
+            if (!this.eventStream) {
+                console.log('creating event stream');
+                this.eventStream = await this._client.createEventStream();
             }
 
-            this.eventStream = streams[1];
-            resolve(null);
-        });
+            const streams = this.eventStream?.tee();
+            console.log('stream locked: ', streams[0]?.locked);
+            await new Promise(async (resolve, reject) => {
+                setTimeout(() => {
+                    this.eventStream = streams[1];
+                    resolve(null);
+                }, 10000);
+
+                for await (const event of streams[0]) {
+                    console.log(event);
+                }
+
+                this.eventStream = streams[1];
+                resolve(null);
+            });
+        }
     }
 
-    keyCardToString(): string {
+    async stopListening(): Promise<void> {
+        this._listening = false;
+    }
+
+    keyCardToString(): HexString {
         return bytesToHex(this._keyCard);
     }
 
@@ -322,9 +349,7 @@ export class RelayClientWrapper {
         await this._client.disconnect();
     }
 
-    async enrollKeycard(): Promise<void> {
-        const walletPrivKey =
-            '0x65c1196c888ae6bb110077201346dfe426b220ce1d49a366102a2d85e7ad0e35';
+    async enrollKeycard(walletPrivKey: HexString): Promise<void> {
         const account: PrivateKeyAccount = privateKeyToAccount(walletPrivKey);
 
         const storeWallet = createWalletClient({
@@ -334,10 +359,6 @@ export class RelayClientWrapper {
         });
 
         await this._client.enrollKeycard(storeWallet);
-    }
-
-    async writeManifest() {
-        //await this._client.shopManifest(this.shopId);
     }
 
     async createCart(): Promise<HexString> {
@@ -418,17 +439,6 @@ export class RelayClientWrapper {
                 chainId: 11155111,
                 addr: hexToBytes(address),
                 name,
-                callAsContract: true,
-            },
-        });
-    }
-
-    async addPayeeContract(name: string, address: HexString) {
-        const pb = await this._client.updateShopManifest({
-            addPayee: {
-                name,
-                chainId: 11155111,
-                addr: hexToBytes(address),
                 callAsContract: true,
             },
         });

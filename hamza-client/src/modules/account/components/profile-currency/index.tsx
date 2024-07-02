@@ -51,6 +51,8 @@ const ProfileCurrency: React.FC<MyInformationProps> = ({ customer }) => {
                 id="currency-select"
                 value={preferred_currency_code!}
                 onChange={handleCurrencyChange}
+                bg="gray.800"
+                color="white"
             >
                 <option value="usdc">USDC</option>
                 <option value="usdt">USDT</option>

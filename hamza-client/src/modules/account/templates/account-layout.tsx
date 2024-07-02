@@ -1,9 +1,12 @@
-import React from 'react';
+'use client';
+import React, { useEffect } from 'react';
 
 import UnderlineLink from '@modules/common/components/interactive-link';
 
 import AccountNav from '../components/account-nav';
 import { Customer } from '@medusajs/medusa';
+import axios from 'axios';
+import { useCustomerAuthStore } from '@store/customer-auth/customer-auth';
 
 interface AccountLayoutProps {
     customer: Omit<Customer, 'password_hash'> | null;
@@ -14,6 +17,25 @@ const AccountLayout: React.FC<AccountLayoutProps> = ({
     customer,
     children,
 }) => {
+    const { authData, setCustomerAuthData } = useCustomerAuthStore();
+    const accountVerificationFetcher = async () => {
+        const customerVerificationData = await axios.get(
+            `${process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL}/custom/get-verification-status?customer_id=${authData.customer_id}`
+        );
+
+        let res = customerVerificationData.data;
+        if (res.data == true) {
+            setCustomerAuthData({ ...authData, is_verified: true });
+        }
+
+        return;
+    };
+    useEffect(() => {
+        if (authData.status == 'authenticated') {
+            accountVerificationFetcher();
+        }
+    }, [authData.status]);
+
     return (
         <div className="font-sora flex-1 small:py-12 bg-black text-white">
             <div className="flex-1 content-container h-full max-w-5xl mx-auto flex flex-col">
