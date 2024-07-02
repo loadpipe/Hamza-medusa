@@ -136,7 +136,12 @@ const ProductCardGroup = ({ vendorName, filterByRating, category }: Props) => {
 
                           const variantID = product.variants[0].id;
                           return (
-                              <GridItem key={index} w="100%">
+                              <GridItem
+                                  key={index}
+                                  minHeight={'243.73px'}
+                                  height={{ base: '100%', md: '399px' }}
+                                  width="100%"
+                              >
                                   <ProductCardStore
                                       key={index}
                                       productHandle={products[index].handle}
