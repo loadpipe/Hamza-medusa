@@ -6,6 +6,7 @@ import { Flex } from '@chakra-ui/react';
 import SearchBar from './components/SearchBar';
 import SkeletonProductGrid from '@modules/skeletons/components/skeleton-product-grid';
 import useStorePage from '@store/store-page/store-page';
+import useHomeProductsPage from '@store/home-page/product-layout/product-layout';
 import FilterBar from './components/filter-bar/FilterBar';
 
 const SearchAndFilterPanel = () => {

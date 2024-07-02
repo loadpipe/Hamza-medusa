@@ -14,6 +14,8 @@ import ErrorMessage from '@modules/checkout/components/error-message';
 import { setShippingMethod } from '@modules/checkout/actions';
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { formatCryptoPrice } from '@lib/util/get-product-price';
+import { useCustomerAuthStore } from '@store/customer-auth/customer-auth';
 
 type ShippingProps = {
     cart: Omit<Cart, 'refundable_amount' | 'refunded_total'>;
@@ -30,6 +32,7 @@ const Shipping: React.FC<ShippingProps> = ({
     const searchParams = useSearchParams();
     const router = useRouter();
     const pathname = usePathname();
+    const { authData, preferred_currency_code } = useCustomerAuthStore();
 
     const isOpen = searchParams.get('step') === 'delivery';
     const cartId = isOpen ? searchParams.get('cart') : cart.id;
@@ -148,12 +151,11 @@ const Shipping: React.FC<ShippingProps> = ({
                                                 </span>
                                             </div>
                                             <span className="justify-self-end text-ui-fg-base">
-                                                {formatAmount({
-                                                    amount: option.amount!,
-                                                    region: cart?.region,
-                                                    includeTaxes: false,
-                                                    currency_code: '',
-                                                }).toString()}
+                                                {formatCryptoPrice(
+                                                    option.amount!,
+                                                    preferred_currency_code!
+                                                ).toString()}{' '}
+                                                {preferred_currency_code?.toUpperCase()}
                                             </span>
                                         </RadioGroup.Option>
                                     );

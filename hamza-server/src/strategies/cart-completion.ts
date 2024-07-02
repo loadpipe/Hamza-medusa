@@ -344,14 +344,20 @@ class CartCompletionStrategy extends AbstractCartCompletionStrategy {
             const checkoutInputs = [];
             for (const item of group.items) {
                 const prod: Product = item.variant.product;
-                checkoutInputs.push({
-                    productId: prod.massmarket_prod_id,
-                    quantity: item.quantity,
-                });
+
+                if (prod.massmarket_prod_id?.length) {
+                    checkoutInputs.push({
+                        productId: prod.massmarket_prod_id,
+                        quantity: item.quantity,
+                    });
+                }
             }
 
             //get payment currency address
-            let currencyAddress = getCurrencyAddress(group.currency_code, 11155111);
+            let currencyAddress = getCurrencyAddress(
+                group.currency_code,
+                11155111
+            );
             if (currencyAddress) {
                 if (currencyAddress === '0x0' || currencyAddress === '')
                     currencyAddress = undefined;

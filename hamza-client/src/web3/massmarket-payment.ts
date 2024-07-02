@@ -54,13 +54,8 @@ export class MassmarketPaymentClient {
     }
 
     async pay(inputs: IMultiPaymentInput[]) {
-        const chainId =
-            parseInt(
-                (
-                    await this.provider.getNetwork()
-                ).toString()
-            );
-
+        const chainId = parseInt((await this.provider.getNetwork()).chainId.toString());
+        console.log(`chainID is ${chainId}`)
 
         //for wrong chain, just doing a very very fake checkout for now !
         if (chainId != 11155111 || process.env.NEXT_PUBLIC_FAKE_CHECKOUT) {
@@ -103,8 +98,7 @@ export class MassmarketPaymentClient {
         const nativeTotal: BigNumberish = this.getNativeTotal(inputs);
         console.log('native amount:', nativeTotal);
 
-        const requests: IPaymentRequest[] = this.convertInputs(inputs);
-
+        //default values, used for fake checkout
         let from = await this.signer.getAddress();
         let to: HexString = '0x8bA35513C3F5ac659907D222e3DaB38b20f8F52A';
         let receipt: any = { from, to };
@@ -115,23 +109,30 @@ export class MassmarketPaymentClient {
         );
 
         if (!process.env.NEXT_PUBLIC_FAKE_CHECKOUT || chainId != 11155111) {
+            //get input appropriate for sending to Payment contract
+            const requests: IPaymentRequest[] = this.convertInputs(inputs);
+
             console.log('sending requests: ', requests, nativeTotal);
-            console.log(
-                'paymentId',
-                BigInt(await this.getPaymentId(requests[0])).toString(16)
-            );
-            const permits: string[] = [];
-            for (let i = 0; i < requests.length; i++) {
-                permits.push('0x');
+
+            if (requests.length) {
+                console.log(
+                    'paymentId',
+                    BigInt(await this.getPaymentId(requests[0])).toString(16)
+                );
+                const permits: string[] = [];
+                for (let i = 0; i < requests.length; i++) {
+                    permits.push('0x');
+                }
+                const tx: any = await this.paymentContract.multiPay(
+                    requests,
+                    permits,
+                    {
+                        value: nativeTotal,
+                    }
+                );
+                receipt = await tx.wait();
+                txHash = tx.hash;
             }
-            const tx: any = await this.paymentContract.multiPay(
-                requests,
-                permits,
-                {
-                    value: nativeTotal,
-                });
-            receipt = await tx.wait();
-            txHash = tx.hash;
         } else {
             txHash = await window.ethereum?.request({
                 method: 'eth_sendTransaction',
@@ -157,18 +158,21 @@ export class MassmarketPaymentClient {
 
         for (const input of inputs) {
             for (const payment of input.payments) {
-                const request: IPaymentRequest = {
-                    chainId: payment.chainId,
-                    ttl: payment.massmarketTtl,
-                    currency: input.currency,
-                    amount: payment.massmarketAmount,
-                    order: payment.massmarketOrderId,
-                    payeeAddress: '0x74b7284836f753101bd683c3843e95813b381f18', //TODO: get dynamic
-                    isPaymentEndpoint: true, //TODO: get from mm output
-                    shopId: payment.storeId,
-                    shopSignature: new Uint8Array(64),
-                };
-                output.push(request);
+                if (payment.massmarketOrderId?.length > 3) {
+                    const request: IPaymentRequest = {
+                        chainId: payment.chainId,
+                        ttl: payment.massmarketTtl,
+                        currency: input.currency,
+                        amount: payment.massmarketAmount,
+                        order: payment.massmarketOrderId,
+                        payeeAddress:
+                            '0x74b7284836f753101bd683c3843e95813b381f18', //TODO: get dynamic
+                        isPaymentEndpoint: true, //TODO: get from mm output
+                        shopId: payment.storeId,
+                        shopSignature: new Uint8Array(64),
+                    };
+                    output.push(request);
+                }
             }
         }
 
@@ -190,7 +194,7 @@ export class MassmarketPaymentClient {
         //this will sum the amounts to pay for each token
         const sum = (arr: { massmarketAmount: BigNumberish }[]) =>
             arr.reduce(
-                (acc, obj) => BigInt(acc) + BigInt(obj.massmarketAmount),
+                (acc, obj) => BigInt(acc) + BigInt(obj.massmarketAmount ?? 0),
                 BigInt(0)
             );
 
@@ -212,7 +216,7 @@ export class MassmarketPaymentClient {
         let output: bigint = BigInt(0);
         const sum = (arr: { massmarketAmount: BigNumberish }[]) =>
             arr.reduce(
-                (acc, obj) => BigInt(acc) + BigInt(obj.massmarketAmount),
+                (acc, obj) => BigInt(acc) + BigInt(obj.massmarketAmount ?? 0),
                 BigInt(0)
             );
 

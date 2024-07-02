@@ -276,18 +276,8 @@ const PreviewCheckout: React.FC<PreviewCheckoutProps> = ({ productId }) => {
                     <Flex gap="5px" height="20px">
                         <Flex flexDirection={'row'}>
                             <Flex flexDirection={'row'}>
-                                renderStars(averageRating)
+                                {renderStars(averageRating)}
                             </Flex>
-                            <Heading
-                                as="h4"
-                                variant="semibold"
-                                fontSize={'16px'}
-                                color={'white'}
-                                alignSelf={'center'}
-                                mt="2px"
-                            >
-                                $(averageRating)
-                            </Heading>
                             <Heading
                                 ml="4px"
                                 as="h4"
@@ -297,7 +287,7 @@ const PreviewCheckout: React.FC<PreviewCheckoutProps> = ({ productId }) => {
                                 alignSelf={'center'}
                                 mt="2px"
                             >
-                                (${reviewCount} Reviews)
+                                ({reviewCount} Reviews)
                             </Heading>
                         </Flex>
                     </Flex>

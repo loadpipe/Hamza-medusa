@@ -6,6 +6,7 @@ import { Cart, Order, LineItem } from '@medusajs/medusa';
 import { Tooltip } from '@medusajs/ui';
 import { formatCryptoPrice } from '@lib/util/get-product-price';
 import React from 'react';
+import { useCustomerAuthStore } from '@store/customer-auth/customer-auth';
 
 type CartTotalsProps = {
     data: Omit<Cart, 'refundable_amount' | 'refunded_total'> | Order;
@@ -24,6 +25,8 @@ const CartTotals: React.FC<CartTotalsProps> = ({ data }) => {
         shipping_total,
         total,
     } = data;
+
+    const { preferred_currency_code } = useCustomerAuthStore();
 
     const getAmount = (amount: number | null | undefined) => {
         return formatAmount({
@@ -106,7 +109,13 @@ const CartTotals: React.FC<CartTotalsProps> = ({ data }) => {
                 )}
                 <div className="flex items-center justify-between">
                     <span>Shipping</span>
-                    <span>{getAmount(shipping_total).toString()}</span>
+                    <span>
+                        {formatCryptoPrice(
+                            shipping_total!,
+                            preferred_currency_code!
+                        ).toString()}{' '}
+                        {preferred_currency_code?.toUpperCase()}
+                    </span>
                 </div>
                 <div className="flex justify-between">
                     <span className="flex gap-x-1 items-center ">Taxes</span>

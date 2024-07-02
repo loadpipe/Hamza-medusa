@@ -96,40 +96,40 @@ const Addresses = ({
                     </div>
                 </form>
             ) : (
-                <div>
-                    <div className="text-small-regular text-black">
+                <div className="bg-white text-black p-4 rounded-md shadow-md">
+                    <div className="text-small-regular">
                         {cart && cart.shipping_address ? (
-                            <div className="flex items-start gap-x-8">
-                                <div className="flex items-start gap-x-1 w-full">
-                                    <div className="flex flex-col w-1/3">
-                                        <Text className="text-medium-plus text-gray-300 mb-1">
+                            <div className="flex flex-col md:flex-row items-start gap-x-8">
+                                <div className="flex flex-col md:flex-row items-start gap-x-1 w-full">
+                                    <div className="flex flex-col w-full md:w-1/3 mb-4 md:mb-0">
+                                        <Text className="text-medium-plus text-black mb-1">
                                             Shipping Address
                                         </Text>
-                                        <Text className="text-medium text-gray-400">
+                                        <Text className="text-medium text-gray-800">
                                             {cart.shipping_address.first_name}{' '}
                                             {cart.shipping_address.last_name}
                                         </Text>
-                                        <Text className="text-medium text-gray-400">
+                                        <Text className="text-medium text-gray-800">
                                             {cart.shipping_address.address_1}{' '}
                                             {cart.shipping_address.address_2}
                                         </Text>
-                                        <Text className="text-medium text-gray-400">
+                                        <Text className="text-medium text-gray-800">
                                             {cart.shipping_address.postal_code},{' '}
                                             {cart.shipping_address.city}
                                         </Text>
-                                        <Text className="text-medium text-gray-400">
+                                        <Text className="text-medium text-gray-800">
                                             {cart.shipping_address.country_code?.toUpperCase()}
                                         </Text>
                                     </div>
 
-                                    <div className="flex flex-col w-1/3 ">
-                                        <Text className="text-medium-plus text-gray-300 mb-1">
+                                    <div className="flex flex-col w-full md:w-1/3 mb-4 md:mb-0">
+                                        <Text className="text-medium-plus text-black mb-1">
                                             Contact
                                         </Text>
-                                        <Text className="text-medium text-gray-400">
+                                        <Text className="text-medium text-gray-800">
                                             {cart.shipping_address.phone}
                                         </Text>
-                                        <Text className="text-medium text-gray-400">
+                                        <Text className="text-medium text-gray-800">
                                             {cart.email}
                                         </Text>
                                     </div>
