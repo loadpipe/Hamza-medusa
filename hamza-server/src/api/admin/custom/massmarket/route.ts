@@ -121,10 +121,8 @@ async function updateStoreForMM(
     let storeCreds = storesToIds[storeName];
     if (!storeCreds)
         storeCreds = {
-            storeId:
-                '0xf9bd19671391ec9ce554eb7b788e5c661a5906b70fbbf6f4adbbd8383623b058',
-            keycard:
-                '0xd476aa67d4ab33576da3db6d75fd8e93782ba50b13a0fc3b442d05869e2612df',
+            storeId: '',
+            keycard: '',
         };
 
     await storeRepository.save({
@@ -137,9 +135,7 @@ async function updateStoreForMM(
         await productService.getProductsFromStoreWithPrices(storeId);
     for (let prod of products) {
         let mmid = productsToIds[prod.title];
-        if (!mmid)
-            mmid =
-                '0x92bc9e6b60e3bb98c3f13e99ceb8a5604edeb05ad3fa6d54751b07739b670564';
+        if (!mmid) mmid = '';
         if (mmid) {
             await productService.update(prod.id, { massmarket_prod_id: mmid });
         }
