@@ -25,7 +25,7 @@ import useModalFilter from '@store/store-page/filter-modal';
 import useHomeProductsPage from '@store/home-page/product-layout/product-layout';
 import useHomeModalFilter from '@store/home-page/home-filter/home-filter';
 import RangeSliderModal from '@modules/store-v2/component/mobile-fitler/components/range-slider-modal';
-
+import vendors from '../../../data/data';
 interface FilterModalProps {
     isOpen: boolean;
     onClose: () => void;
@@ -85,22 +85,13 @@ const FilterModalHome: React.FC<FilterModalProps> = ({ isOpen, onClose }) => {
                         wrap={'wrap'}
                         gap="16px"
                     >
-                        <CategoryModalButton
-                            categoryType="home_light"
-                            categoryName="Legendary Light Design"
-                        />
-                        <CategoryModalButton
-                            categoryType="gadgets"
-                            categoryName="Dauntless"
-                        />
-                        <CategoryModalButton
-                            categoryType="clothes"
-                            categoryName="Medusa Merch"
-                        />
-                        <CategoryModalButton
-                            categoryType="games"
-                            categoryName="Echo Rift"
-                        />
+                        {vendors.map((vendor: any, index) => (
+                            <CategoryModalButton
+                                key={index}
+                                categoryType="clothes"
+                                categoryName={vendor.vendorName}
+                            />
+                        ))}
                     </Flex>
                     <Text
                         mt="1.5rem"
