@@ -10,7 +10,7 @@ import FilterBar from './components/filter-bar/FilterBar';
 
 const SearchAndFilterPanel = () => {
     const { categorySelect } = useStorePage();
-    const [vendorName, setVendorName] = useState('Legendary Light Design');
+    const [vendorName, setVendorName] = useState('All');
     const [isClient, setIsClient] = useState(false);
 
     // Ensure that the component knows when it's running on the client
