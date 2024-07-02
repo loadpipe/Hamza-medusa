@@ -81,7 +81,7 @@ export const checkoutController = {
                     );
 
                     //do the full checkout
-                    if (rc) {
+                    if (rc && input.items.length) {
                         console.log('creating cart...');
                         const cartId = await rc.createCart();
                         console.log('CART ID: ', cartId);
@@ -159,9 +159,10 @@ export const checkoutController = {
                         }
 
                         output = checkoutOutput;
-                    }
-                    else {
-                        console.log('did not get RC');
+                    } else {
+                        console.log(
+                            'did not get RC, or input.items.length was 0'
+                        );
                     }
                 }
 
