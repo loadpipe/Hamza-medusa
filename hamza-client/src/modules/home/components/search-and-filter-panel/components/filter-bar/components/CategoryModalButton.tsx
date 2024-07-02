@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, Flex } from '@chakra-ui/react';
 import Image from 'next/image';
 import useModalFilter from '@store/store-page/filter-modal';
+import useHomeModalFilter from '@store/home-filter/home-filter';
 import categoryIcons from '../data/cat-icons';
 
 interface CategoryButtonProps {
@@ -14,17 +15,17 @@ const CategoryModalButton: React.FC<CategoryButtonProps> = ({
     categoryType,
 }) => {
     const {
-        modalCategoryFilterSelect,
-        setModalCategoryFilterSelect,
-        setModalCategoryTypeFilterSelect,
-    } = useModalFilter();
+        homeModalCategoryFilterSelect,
+        setHomeModalCategoryFilterSelect,
+        setHomeModalCategoryTypeFilterSelect,
+    } = useHomeModalFilter();
 
     return (
         <Flex>
             <Flex
                 borderColor={'secondary.davy.900'}
                 backgroundColor={
-                    modalCategoryFilterSelect === categoryName
+                    homeModalCategoryFilterSelect === categoryName
                         ? 'white'
                         : 'transparent'
                 }
@@ -36,7 +37,7 @@ const CategoryModalButton: React.FC<CategoryButtonProps> = ({
                 height={'42px'}
                 cursor="pointer"
                 color={
-                    modalCategoryFilterSelect === categoryName
+                    homeModalCategoryFilterSelect === categoryName
                         ? 'black'
                         : 'white'
                 }
@@ -47,8 +48,8 @@ const CategoryModalButton: React.FC<CategoryButtonProps> = ({
                     color: 'black',
                 }}
                 onClick={() => {
-                    setModalCategoryFilterSelect(categoryName),
-                        setModalCategoryTypeFilterSelect(categoryType);
+                    setHomeModalCategoryFilterSelect(categoryName),
+                        setHomeModalCategoryTypeFilterSelect(categoryType);
                 }}
             >
                 <Image src={categoryIcons[categoryType]} alt={categoryName} />
