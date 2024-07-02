@@ -97,7 +97,7 @@ const ProductCardGroup = ({ vendorName, filterByRating, category }: Props) => {
     };
 
     return (
-        <Box maxW={'941px'} width="100%" height="100%" px="1rem">
+        <Box maxW={'941px'} width="100%" height="100%" ml="1rem">
             <StoreFilterDisplay />
             <Grid
                 mt={{ base: '0px', md: '3rem' }}
@@ -105,7 +105,7 @@ const ProductCardGroup = ({ vendorName, filterByRating, category }: Props) => {
                     base: 'repeat(2, 1fr)',
                     lg: 'repeat(3, 1fr)',
                 }}
-                gap={4}
+                gap={{ base: 4, md: 5 }}
             >
                 {isLoading
                     ? renderSkeletons(8) // Render 8 skeletons while loading
