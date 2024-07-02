@@ -126,7 +126,7 @@ const ProductCardGroup = ({ vendorName, filterByRating, category }: Props) => {
                     base: 'repeat(2, 1fr)',
                     lg: 'repeat(4, 1fr)',
                 }}
-                gap={'25.5px'}
+                gap={{ base: '4', md: '25.5px' }}
             >
                 {isLoading
                     ? renderSkeletons(8) // Render 8 skeletons while loading
