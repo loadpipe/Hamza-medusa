@@ -5,12 +5,11 @@ import ProductCardGroup from '@modules/products/components/product-group-home';
 import { Flex } from '@chakra-ui/react';
 import SearchBar from './components/SearchBar';
 import SkeletonProductGrid from '@modules/skeletons/components/skeleton-product-grid';
-import useStorePage from '@store/store-page/store-page';
 import useHomeProductsPage from '@store/home-page/product-layout/product-layout';
 import FilterBar from './components/filter-bar/FilterBar';
 
 const SearchAndFilterPanel = () => {
-    const { categorySelect } = useStorePage();
+    const { categorySelect } = useHomeProductsPage();
     const [vendorName, setVendorName] = useState('All');
     const [isClient, setIsClient] = useState(false);
 
