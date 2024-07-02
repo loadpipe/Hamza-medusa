@@ -54,7 +54,8 @@ export class MassmarketPaymentClient {
     }
 
     async pay(inputs: IMultiPaymentInput[]) {
-        const chainId = parseInt((await this.provider.getNetwork()).toString());
+        const chainId = parseInt((await this.provider.getNetwork()).chainId.toString());
+        console.log(`chainID is ${chainId}`)
 
         //for wrong chain, just doing a very very fake checkout for now !
         if (chainId != 11155111 || process.env.NEXT_PUBLIC_FAKE_CHECKOUT) {
@@ -157,7 +158,7 @@ export class MassmarketPaymentClient {
 
         for (const input of inputs) {
             for (const payment of input.payments) {
-                if (payment.massmarketOrderId.length > 3) {
+                if (payment.massmarketOrderId?.length > 3) {
                     const request: IPaymentRequest = {
                         chainId: payment.chainId,
                         ttl: payment.massmarketTtl,
@@ -193,7 +194,7 @@ export class MassmarketPaymentClient {
         //this will sum the amounts to pay for each token
         const sum = (arr: { massmarketAmount: BigNumberish }[]) =>
             arr.reduce(
-                (acc, obj) => BigInt(acc) + BigInt(obj.massmarketAmount),
+                (acc, obj) => BigInt(acc) + BigInt(obj.massmarketAmount ?? 0),
                 BigInt(0)
             );
 
@@ -215,7 +216,7 @@ export class MassmarketPaymentClient {
         let output: bigint = BigInt(0);
         const sum = (arr: { massmarketAmount: BigNumberish }[]) =>
             arr.reduce(
-                (acc, obj) => BigInt(acc) + BigInt(obj.massmarketAmount),
+                (acc, obj) => BigInt(acc) + BigInt(obj.massmarketAmount ?? 0),
                 BigInt(0)
             );
 

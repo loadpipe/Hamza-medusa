@@ -41,10 +41,11 @@ export const checkoutController = {
                     };
                 } else {
                     //validate input
-                    if (!validateCheckoutInput(res, input)) {
-                        console.log('validation failed');
-                        return null;
-                    }
+                    //TODO: skip validation for demo
+                    //if (!validateCheckoutInput(res, input)) {
+                    //    console.log('validation failed');
+                    //    return null;
+                    //}
 
                     //fake inputs for testing if needed
                     /*
