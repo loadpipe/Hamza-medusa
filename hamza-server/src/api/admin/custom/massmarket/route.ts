@@ -2,14 +2,41 @@ import { MedusaRequest, MedusaResponse, Logger } from '@medusajs/medusa';
 //import { RelayClientWrapper } from '../../../../massmarket/client';
 
 const productsToIds = {
+    //Medusa Merch
     'Medusa Coffee Mug':
         '0x92bc9e6b60e3bb98c3f13e99ceb8a5604edeb05ad3fa6d54751b07739b670564',
+
+    //Legendary Light
     'INDOOR/OUTDOOR WALL LAMP M - W100 X D4':
         '0x2bec4242fbb2803d4b8c937474b180fbe59fa1fb59d9052c5374867650f802dc',
     'Tripod RGB Spine':
         '0x3df4d361c56898b08302fe6521c1b3bd2e2aae293475445c028c9b23a462d6fa',
     'RGB LED Strips':
         '0xa619cf448f807c7c83f2602eaa03cf616d80ab20a1723e55bcdfa7fe0d10d364',
+
+    //Echo Rift
+    'The Streamline Rift':
+        '0x5f7fb9d835068de2d6d0be591056b23342ce205794b9cd6f6b3545450b7d7ef3',
+
+    //Dauntless
+    'The Visionary':
+        '0xe5bcb69042566ccf04cbaf9e04b40cd2452e4346d3b172cd1d00090a4eae5480',
+
+    //Lego
+    'LEGO Icons Corvette Classic Car':
+        '0xd7371f003cd7275158d91c6ac2c2ebbde3c70b936c6fca45acd722a630cfa84b',
+
+    //Drones
+    'DJI Mini 3 Pro with Flagship Triple-Camera':
+        '0xe149369c77068879fc6dc632baeb764b7a71784ed942990eced76e825c01ab63',
+
+    //Board games
+    'Dark Souls: The Board Game':
+        '0xbcc7960e6010da7f8f68bb35c2498d08e6949f43d2d424c13d1556dac0c1b896',
+
+    //Workout
+    'ihuan Ventilated Weight Lifting Gym Workout Gloves':
+        '0xa6b24c5a6da564f24be8af1e4548344f5b4c750d875d390f6b45c7ca4f39d232',
 };
 
 const storesToIds = {
