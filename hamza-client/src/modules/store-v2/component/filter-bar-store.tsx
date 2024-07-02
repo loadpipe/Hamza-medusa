@@ -1,20 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { Flex, useDisclosure } from '@chakra-ui/react';
-import CategoryButtons from './components/CategoryButtons';
-import vendors from '../../data/data';
-import FilterButton from './components/FilterButton';
+import React, { useState } from 'react';
+import { Flex } from '@chakra-ui/react';
+import CategoryTopButton from './category-top-button';
 import { CgChevronRight } from 'react-icons/cg';
-import FilterModalHome from './components/FilterModal';
+import vendors from '@modules/home/components/search-and-filter-panel/data/data';
 
-const FilterBar = () => {
-    const [isClient, setIsClient] = useState(false);
-    const [startIdx, setStartIdx] = useState(0); // State to keep track of the starting index of visible vendors
-    const { isOpen, onOpen, onClose } = useDisclosure();
-
-    // Ensure that the component knows when it's running on the client
-    useEffect(() => {
-        setIsClient(true);
-    }, []);
+const FilterBarStore = () => {
+    const [startIdx, setStartIdx] = useState(0);
 
     const toggleShowMore = () => {
         // Update the starting index to show the next set of vendors
@@ -27,24 +18,16 @@ const FilterBar = () => {
         .concat(vendors.slice(0, Math.max(0, 6 - (vendors.length - startIdx))));
 
     return (
-        <Flex
-            mt={{ base: '2.5rem', md: '4rem' }}
-            maxW={'1280px'}
-            width={'100%'}
-            alignItems={'center'}
-            justifyContent={'center'}
-        >
+        <Flex maxW={'941px'} width={'100%'} position="relative">
             <Flex
-                mx="1rem"
-                maxW={'1249px'}
+                maxW={'941px'}
                 width={'100%'}
                 overflow={'hidden'}
                 gap={'20px'}
-                position="relative"
+                position="absolute"
             >
-                <FilterButton onClick={() => onOpen()} />
                 {visibleVendors.map((vendor: any, index) => (
-                    <CategoryButtons
+                    <CategoryTopButton
                         key={index}
                         categoryType="clothes"
                         categoryName={vendor.vendorName}
@@ -59,7 +42,6 @@ const FilterBar = () => {
                     cursor="pointer"
                     position="absolute"
                     right="0"
-                    top="0"
                     bg="linear-gradient(90deg, rgba(44, 39, 45, 0) 0%, #2C272D 50%)" // Applying linear gradient
                 >
                     <Flex
@@ -73,9 +55,8 @@ const FilterBar = () => {
                     </Flex>
                 </Flex>
             </Flex>
-            <FilterModalHome isOpen={isOpen} onClose={onClose} />
         </Flex>
     );
 };
 
-export default FilterBar;
+export default FilterBarStore;

@@ -101,15 +101,21 @@ const ProductCardGroup = ({ vendorName, filterByRating, category }: Props) => {
     };
 
     return (
-        <Box maxW={'941px'} width="100%" height="100%" px="1rem">
+        <Box
+            maxW={'941px'}
+            width="100%"
+            height="100%"
+            mx={{ base: '0', md: '1rem' }}
+        >
             <StoreFilterDisplay />
             <Grid
                 mt={{ base: '0px', md: '3rem' }}
+                mx={{ base: '1rem', md: '0' }}
                 templateColumns={{
                     base: 'repeat(2, 1fr)',
                     lg: 'repeat(3, 1fr)',
                 }}
-                gap={{ base: 4, md: 6 }}
+                gap={{ base: 4, md: 5 }}
             >
                 {isLoading
                     ? renderSkeletons(8) // Render 8 skeletons while loading
@@ -140,7 +146,12 @@ const ProductCardGroup = ({ vendorName, filterByRating, category }: Props) => {
 
                           const variantID = product.variants[0].id;
                           return (
-                              <GridItem key={index} w="100%">
+                              <GridItem
+                                  key={index}
+                                  minHeight={'243.73px'}
+                                  height={{ base: '100%', md: '399px' }}
+                                  width="100%"
+                              >
                                   <ProductCardStore
                                       key={index}
                                       productHandle={products[index].handle}

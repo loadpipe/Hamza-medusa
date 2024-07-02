@@ -185,12 +185,7 @@ const ProductCardStore: React.FC<ProductCardProps & { productId?: string }> = ({
             <Box
                 borderRadius="16px"
                 overflow="hidden"
-                width="100%"
-                height="100%"
                 backgroundColor="black"
-                maxHeight={'399px'} //399px
-                minHeight={'243.73px'}
-                maxWidth={{ base: '100%', lg: '283px' }}
                 transition="transform 0.2s ease-in-out" // Adds a smooth transition effect
                 _hover={{
                     transform: 'scale(1.02)', // Increases the size by 2% on hover
